@@ -4,6 +4,12 @@
         "api_key": "<your_dplahub_api_key_here>",
         "dpla_api_key": "<your_dpla_api_key_here>"
     },
+    "aws": {
+        "AWS_ACCESS_KEY_ID": "<access key here>",
+        "AWS_SECRET_ACCESS_KEY": "<secret key here>",
+        "AWS_REGION": "us-west-2",
+        "AWS_BUCKET": "dpla.hub.umn/mdl"
+    },    
     "extractor": {
         "records": {
             "base_url": "http://dpla-services.libsystems.com/api/v1/extract",
