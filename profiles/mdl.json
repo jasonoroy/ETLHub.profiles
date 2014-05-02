@@ -81,7 +81,7 @@
             "isShownAt": {
                 "origins": [
                     {
-                        "path": "metadata/dc/identifier[2]"
+                        "path": "metadata/dc/identifier[last()]"
                     }
                 ]
             },
