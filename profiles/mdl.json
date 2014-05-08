@@ -18,7 +18,7 @@
       "api_key": "<your key here>",
       "origin_path": "records",
       "endpoint": "http://reflections.mndigital.org/oai/oai2.php",
-      "cache_response": "2.weeks",
+      "cache_response": true,
       "allow_parallel_extraction": false
     },
     "enrichments": [
