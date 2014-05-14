@@ -59,10 +59,10 @@
       "originalRecord": "dpla:originalRecord"
     },
     "fields": {
-      "status": {
+      "pushToDPLA": {
         "origins": [
           {
-            "path": "header/status"
+            "value": true
           }
         ]
       },
@@ -83,21 +83,21 @@
       "object": {
         "origins": [
           {
-            "path": "metadata/dc/identifier[2]"
+            "path": "header/identifier"
           }
         ],
         "processors": [
           {
             "process": "gsub",
             "args": {
-              "pattern": "http:\\/\\/reflections.mndigital.org\\/u\\?\\/",
+              "pattern": "oai:reflections.mndigital.org:",
               "replacement": ""
             }
           },
           {
             "process": "gsub",
             "args": {
-              "pattern": ",",
+              "pattern": "/",
               "replacement": "&CISOPTR="
             }
           },
@@ -116,11 +116,22 @@
           }
         ]
       },
+      "sourceResource/publisher": {
+        "origins": [
+          {
+            "path": "metadata/dc/source"
+          }
+        ]
+      },
       "provider": {
-        "value": {
-          "@id": "http://dp.la/api/contributor/mdl",
-          "name": "Minnesota Digital Library"
-        }
+        "origins": [
+          {
+            "value": {
+              "@id": "http://dp.la/api/contributor/mdl",
+              "name": "Minnesota Digital Library"
+            }
+          }
+        ]
       },
       "title": {
         "origins": [
@@ -171,7 +182,7 @@
             "process": "geonames_postal",
             "args": {
               "username": "umntestuser",
-              "match_sets": [
+              "defaults": [
                 {
                   "matches": [
                     [
@@ -337,6 +348,18 @@
           {
             "path": "metadata/dc/description"
           }
+        ],
+        "processors": [
+          {
+            "process": "rstrip"
+          },
+          {
+            "process": "gsub",
+            "args": {
+              "pattern": "\\s+\\s+",
+              "replacement": " "
+            }
+          }
         ]
       },
       "sourceResource/contributor": {
@@ -349,7 +372,7 @@
       "sourceResource/format": {
         "origins": [
           {
-            "path": "metadata/dc/format[last()]"
+            "path": "metadata/dc/format[last()]||metadata/dc/format"
           }
         ],
         "processors": [
@@ -364,6 +387,13 @@
             "args": [
               ""
             ]
+          },
+          {
+            "process": "gsub",
+            "args": {
+              "pattern": ";",
+              "replacement": ""
+            }
           }
         ]
       },
@@ -371,6 +401,18 @@
         "origins": [
           {
             "path": "metadata/dc/rights"
+          }
+        ],
+        "processors": [
+          {
+            "process": "rstrip"
+          },
+          {
+            "process": "gsub",
+            "args": {
+              "pattern": "\\s+\\s+",
+              "replacement": " "
+            }
           }
         ]
       },
