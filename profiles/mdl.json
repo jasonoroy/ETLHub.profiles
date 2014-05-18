@@ -2,7 +2,7 @@
   "remote_storage": {
     "AWS_ACCESS_KEY_ID": "<your key here>",
     "AWS_SECRET_ACCESS_KEY": "<your key here>",
-    "AWS_REGION": "us-west-2",
+    "AWS_REGION": "<your region here. e.g. us-west-2>",
     "AWS_BUCKET": "<your bucket here>"
   },
   "validator": {
@@ -14,7 +14,6 @@
     "records": {
       "base_url": "http://localhost:8083/api/v1/extract",
       "endpoint_type": "oai_dc",
-      "query_params": "verb%3DListRecords%26metadataPrefix%3Doai_dc",
       "api_key": "<your key here>",
       "origin_path": "records",
       "endpoint": "http://reflections.mndigital.org/oai/oai2.php",
@@ -23,8 +22,7 @@
     },
     "enrichments": [
       {
-        "key": "listSets",
-        "url": "http://localhost:8083/api/v1/extract?endpoint=http://reflections.mndigital.org/oai/oai2.php&endpoint_type=oai_dc&api_key=  <<<<your key here>>>>    &query_params=verb%3DListSets&cache_response=true"
+        "url": "http://localhost:8083/api/v1/extract?endpoint=http://reflections.mndigital.org/oai/oai2.php&endpoint_type=oai_dc&api_key=<your key here>&verb=ListSets&cache_response=true"
       }
     ]
   },
@@ -141,7 +139,7 @@
         ],
         "processors": [
           {
-            "process": "rstrip"
+            "process": "strip"
           },
           {
             "process": "gsub",
@@ -160,7 +158,7 @@
         ],
         "processors": [
           {
-            "process": "rstrip"
+            "process": "strip"
           },
           {
             "process": "gsub",
@@ -235,7 +233,7 @@
         ],
         "processors": [
           {
-            "process": "rsplit",
+            "process": "split",
             "args": [
               "; "
             ]
@@ -247,7 +245,7 @@
             "process": "unique"
           },
           {
-            "process": "rstrip"
+            "process": "strip"
           },
           {
             "process": "gsub",
@@ -273,16 +271,13 @@
             }
           },
           {
-            "process": "rsplit",
+            "process": "split",
             "args": [
               " - "
             ]
           },
           {
-            "process": "slice",
-            "args": [
-              "0"
-            ]
+            "process": "first"
           }
         ]
       },
@@ -301,22 +296,13 @@
             }
           },
           {
-            "process": "rsplit",
+            "process": "split",
             "args": [
               " - "
             ]
           },
           {
-            "process": "slice",
-            "args": [
-              "1"
-            ]
-          },
-          {
-            "process": "join",
-            "args": [
-              ""
-            ]
+            "process": "last"
           }
         ]
       },
@@ -351,7 +337,7 @@
         ],
         "processors": [
           {
-            "process": "rstrip"
+            "process": "strip"
           },
           {
             "process": "gsub",
@@ -377,7 +363,7 @@
         ],
         "processors": [
           {
-            "process": "rstrip"
+            "process": "strip"
           },
           {
             "process": "flatten"
@@ -405,7 +391,7 @@
         ],
         "processors": [
           {
-            "process": "rstrip"
+            "process": "strip"
           },
           {
             "process": "gsub",
@@ -424,13 +410,13 @@
         ],
         "processors": [
           {
-            "process": "rsplit",
+            "process": "split",
             "args": [
               ";"
             ]
           },
           {
-            "process": "rstrip"
+            "process": "strip"
           }
         ]
       },
