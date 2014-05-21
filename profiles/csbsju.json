@@ -1,0 +1,273 @@
+{
+    "remote_storage": {
+      "AWS_ACCESS_KEY_ID": "<your key here>",
+      "AWS_SECRET_ACCESS_KEY": "<your key here>",
+      "AWS_REGION": "<your region here. e.g. us-west-2>",
+      "AWS_BUCKET": "<your bucket here>"
+    },
+    "validator": {
+        "base_url": "http://localhost:8083/api/v1/validate",
+        "api_key": "<your key here>",
+        "dpla_api_key": "<your key here>"
+    },
+    "extractor": {
+        "records": {
+            "base_url": "http://localhost:8083/api/v1/extract",
+            "endpoint_type": "oai_dc",
+            "api_key": "<your key here>",
+            "origin_path": "records",
+            "endpoint": "http://cdm.csbsju.edu/oai/oai.php",
+            "cache_response": true
+        },
+        "enrichments": [
+          {
+            "url": "http://localhost:8083/api/v1/extract?endpoint=http://cdm.csbsju.edu/oai/oai.php&endpoint_type=oai_dc&api_key=<your key here>&verb=ListSets&cache_response=true"
+          }
+        ]
+    },
+    "transformer": {
+        "base_url": "http://localhost:8083/api/v1/transform",
+        "api_key": "http://localhost:8083",
+        "@context": {
+            "edm": "http://www.europeana.eu/schemas/edm/",
+            "isShownAt": "edm:isShownAt",
+            "dpla": "http://dp.la/terms/",
+            "dataProvider": "edm:dataProvider",
+            "aggregatedDigitalResource": "dpla:aggregatedDigitalResource",
+            "state": "dpla:state",
+            "hasView": "edm:hasView",
+            "provider": "edm:provider",
+            "collection": "dpla:aggregation",
+            "object": "edm:object",
+            "stateLocatedIn": "dpla:stateLocatedIn",
+            "begin": {
+                "@type": "xsd:date",
+                "@id": "dpla:dateRangeStart"
+            },
+            "@vocab": "http://purl.org/dc/terms/",
+            "LCSH": "http://id.loc.gov/authorities/subjects",
+            "sourceResource": "edm:source0.Resource",
+            "name": "xsd:string",
+            "coordinates": "dpla:coordinates",
+            "end": {
+                "@type": "xsd:date",
+                "@id": "dpla:dateRangeEnd"
+            },
+            "originalRecord": "dpla:originalRecord"
+        },
+        "fields": {
+            "status": {
+                "origins": [
+                    {
+                        "path": "header/status"
+                    }
+                ]
+            },
+            "isShownAt": {
+                "origins": [
+                    {
+                        "path": "metadata/dc/identifier"
+                    }
+                ]
+            },
+            "title": {
+                "origins": [
+                    {
+                        "path": "metadata/dc/title"
+                    },
+                    {
+                        "process": "gsub",
+                        "args": {
+                            "pattern": "\\s+\\s+",
+                            "replacement": " "
+                        }
+                    }
+                ],
+                "processors": [
+                    {
+                        "process": "rstrip"
+                    }
+                ]
+            },
+            "sourceResource/title": {
+                "origins": [
+                    {
+                        "path": "metadata/dc/title"
+                    }
+                ],
+                "processors": [
+                    {
+                        "process": "rstrip"
+                    },
+                    {
+                        "process": "gsub",
+                        "args": {
+                            "pattern": "\\s+\\s+",
+                            "replacement": " "
+                        }
+                    }
+                ]
+            },
+            "provider": {
+                "value": {
+                    "@id": "http://dp.la/api/contributor/csbsju",
+                    "name": "College of Saint Benedict & Saint John's University"
+                }
+            },
+            "sourceResource/date/displayDate": {
+                "origins": [
+                    {
+                        "path": "metadata/dc/date"
+                    }
+                ]
+            },
+            "sourceResource/type": {
+                "origins": [
+                    {
+                        "path": "metadata/dc/type"
+                    }
+                ]
+            },
+             "sourceResource/format": {
+                  "origins": [
+                      {
+                          "path": "metadata/dc/format[1]"
+                      },
+                      {
+                          "path": "metadata/dc/format"
+                      }
+                  ],
+                  "processors": [
+                      {
+                          "process": "rstrip"
+                      },
+                      {
+                          "process": "flatten"
+                      },
+                      {
+                          "process": "join",
+                          "args": [
+                              ""
+                          ]
+                      }
+                  ]
+              },
+            "sourceResource/identifier": {
+                "origins": [
+                    {
+                        "path": "header/identifier"
+                    }
+                ]
+            },
+            "identifier": {
+                "origins": [
+                    {
+                        "path": "header/identifier"
+                    }
+                ]
+            },
+            "sourceResource/publisher": {
+                "origins": [
+                    {
+                        "path": "metadata/dc/publisher"
+                    }
+                ],
+                "processors": [
+                    {
+                        "process": "rstrip"
+                    }
+                ]
+            },
+            "sourceResource/subject": {
+                "label": "name",
+                "origins": [
+                    {
+                        "path": "metadata/dc/subject"
+                    }
+                ],
+                "processors": [
+                    {
+                        "process": "rsplit",
+                        "args": [
+                            "; "
+                        ]
+                    },
+                    {
+                        "process": "flatten"
+                    },
+                    {
+                        "process": "unique"
+                    },
+                    {
+                        "process": "rstrip"
+                    },
+                    {
+                        "process": "gsub",
+                        "args": {
+                            "pattern": "\\s--\\s",
+                            "replacement": "--"
+                        }
+                    }
+                ]
+            },
+            "sourceResource/description": {
+                "origins": [
+                    {
+                        "path": "metadata/dc/description"
+                    }
+                ],
+                "processors": [
+                    {
+                        "process": "flatten"
+                    }
+                ]
+            },
+            "sourceResource/rights": {
+                "origins": [
+                    {
+                        "path": "metadata/dc/rights"
+                    }
+                ]
+            },
+            "sourceResource/language": {
+                "origins": [
+                    {
+                        "path": "metadata/dc/language"
+                    }
+                ]
+            },
+            "object": {
+                "origins": [
+                    {
+                        "path": "metadata/dc/identifier"
+                    }
+                ],
+                "processors": [
+                    {
+                        "process": "gsub",
+                        "args": {
+                            "pattern": "cdm\\/ref",
+                            "replacement": "utils/getthumbnail"
+                        }
+                    }
+                ]
+            },
+            "sourceResource/creator": {
+                "origins": [
+                    {
+                        "path": "metadata/dc/creator"
+                    }
+                ],
+                "processors": [
+                    {
+                        "process": "gsub",
+                        "args": {
+                            "pattern": "\\.",
+                            "replacement": ""
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
