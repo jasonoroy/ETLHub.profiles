@@ -3,7 +3,7 @@
     "AWS_ACCESS_KEY_ID": "<key here>",
     "AWS_SECRET_ACCESS_KEY": "<key here>",
     "AWS_REGION": "us-west-2",
-    "AWS_BUCKET": "dpla.hub.umn.mpr"
+    "AWS_BUCKET": "dpla.hub.umn.mdl"
   },
   "validator": {
     "base_url": "http://localhost:8083/api/v1/validate",
@@ -13,13 +13,19 @@
   "extractor": {
     "records": {
       "base_url": "http://localhost:8083/api/v1/extract",
-      "endpoint_type": "simple_get",
-      "endpoint": "http%3A%2F%2Fmnmediasource.org%2Fdezi%2Fmpr%2Fsearch%3Fq%3Dguid%21%3Dnull%26h%3D0%26s%3Dpublish_date%2520desc%26f%3D0%26p%3D1000",
+      "endpoint_type": "oai_dc",
       "api_key": "<key here>",
-      "batch_param_variable": "o",
       "origin_path": "records",
+      "endpoint": "http://reflections.mndigital.org/oai/oai2.php",
+      "cache_response": "2.weeks",
       "allow_parallel_extraction": false
-    }
+    },
+    "enrichments": [
+      {
+        "url": "http://localhost:8083/api/v1/extract?endpoint=http://reflections.mndigital.org/oai/oai2.php&endpoint_type=oai_dc&api_key=<key here>&verb=ListSets",
+        "key": "listSets"
+      }
+    ]
   },
   "transformer": {
     "base_url": "http://localhost:8083/api/v1/transform",
@@ -59,31 +65,53 @@
           }
         ]
       },
-      "identifier": {
-        "origins": [
-          {
-            "path": "guid[last()]"
-          }
-        ]
-      },
       "isShownAt": {
         "origins": [
           {
-            "path": "uri"
+            "path": "metadata/dc/identifier[last()]"
+          }
+        ]
+      },
+      "sourceResource/extent": {
+        "origins": [
+          {
+            "path": "metadata/dc/format[first()]"
           }
         ]
       },
       "object": {
         "origins": [
           {
-            "path": "image[first()]"
+            "path": "header/identifier"
+          }
+        ],
+        "processors": [
+          {
+            "process": "gsub",
+            "args": {
+              "pattern": "oai:reflections.mndigital.org:",
+              "replacement": ""
+            }
+          },
+          {
+            "process": "gsub",
+            "args": {
+              "pattern": "/",
+              "replacement": "&CISOPTR="
+            }
+          },
+          {
+            "process": "affix",
+            "args": {
+              "prefix": "http://reflections.mndigital.org/cgi-bin/thumbnail.exe?CISOROOT=/"
+            }
           }
         ]
       },
       "dataProvider": {
         "origins": [
           {
-            "path": "origin[last()]"
+            "path": "metadata/dc/publisher"
           }
         ]
       },
@@ -98,8 +126,8 @@
         "origins": [
           {
             "value": {
-              "@id": "http://dp.la/api/contributor/mpr",
-              "name": "Minnesota Public Radio"
+              "@id": "http://dp.la/api/contributor/mdl",
+              "name": "Minnesota Digital Library"
             }
           }
         ]
@@ -107,116 +135,93 @@
       "title": {
         "origins": [
           {
-            "path": "title"
+            "path": "metadata/dc/title"
           }
         ],
         "processors": [
           {
-            "process": "html_decode"
+            "process": "strip"
           },
           {
-            "process": "strip_html"
+            "process": "gsub",
+            "args": {
+              "pattern": "\\s+\\s+",
+              "replacement": " "
+            }
           }
         ]
       },
       "sourceResource/title": {
         "origins": [
           {
-            "path": "title"
+            "path": "metadata/dc/title"
           }
         ],
         "processors": [
           {
-            "process": "html_decode"
-          },
-          {
-            "process": "strip_html"
-          }
-        ]
-      },
-      "sourceResource/date/begin": {
-        "origins": [
-          {
-            "path": "publish_date[last()]"
-          }
-        ],
-        "processors": [
-          {
-            "process": "split",
-            "args": [
-              "-"
-            ]
-          },
-          {
-            "process": "first"
-          }
-        ]
-      },
-      "sourceResource/date/end": {
-        "origins": [
-          {
-            "path": "publish_date[last()]"
-          }
-        ],
-        "processors": [
-          {
-            "process": "split",
-            "args": [
-              "-"
-            ]
-          },
-          {
-            "process": "first"
-          }
-        ]
-      },
-      "sourceResource/date/displayDate": {
-        "origins": [
-          {
-            "path": "publish_date[last()]"
-          }
-        ]
-      },
-      "sourceResource/creator": {
-        "origins": [
-          {
-            "path": "author"
-          }
-        ],
-        "processors": [
-          {
-            "process": "compact"
-          },
-          {
-            "process": "nil_if_empty"
-          }
-        ]
-      },
-      "sourceResource/description": {
-        "origins": [
-          {
-            "path": "summary"
-          }
-        ],
-        "processors": [
-          {
-            "process": "html_decode"
-          },
-          {
-            "process": "strip_html"
+            "process": "strip"
           },
           {
             "process": "gsub",
             "args": {
-              "pattern": "Dateline: St. Paul, Minn.",
-              "replacement": ""
+              "pattern": "\\s+\\s+",
+              "replacement": " "
             }
-          },
+          }
+        ]
+      },
+      "sourceResource/spatial": {
+        "origins": [
           {
-            "process": "match_first",
-            "args": [
-              ".*\n$"
-            ]
+            "path": "metadata/dc/coverage"
+          }
+        ],
+        "processors": [
+          {
+            "process": "geonames_postal",
+            "args": {
+              "username": "umntestuser",
+              "defaults": [
+                {
+                  "matches": [
+                    [
+                      "Minneapolis",
+                      "Downtown",
+                      "Hennepin",
+                      "Minnesota",
+                      "United States"
+                    ],
+                    [
+                      "Minneapolis",
+                      "Hennepin",
+                      "Minnesota",
+                      "United States"
+                    ],
+                    [
+                      "Minneapolis",
+                      "Minnesota",
+                      "United States"
+                    ],
+                    [
+                      "Minneapolis",
+                      "Minnesota"
+                    ],
+                    [
+                      "Minneapolis"
+                    ]
+                  ],
+                  "returns": {
+                    "county": "Hennepin County",
+                    "name": "Minneapolis",
+                    "state": "Minnesota",
+                    "coordinates": [
+                      "44.9871, -93.2737"
+                    ],
+                    "country": "United States"
+                  }
+                }
+              ]
+            }
           }
         ]
       },
@@ -249,6 +254,210 @@
               "pattern": "\\s--\\s",
               "replacement": "--"
             }
+          }
+        ]
+      },
+      "sourceResource/date/begin": {
+        "origins": [
+          {
+            "path": "metadata/dc/date"
+          }
+        ],
+        "processors": [
+          {
+            "process": "gsub",
+            "args": {
+              "pattern": "\\?",
+              "replacement": ""
+            }
+          },
+          {
+            "process": "split",
+            "args": [
+              " - "
+            ]
+          },
+          {
+            "process": "first"
+          }
+        ]
+      },
+      "sourceResource/date/end": {
+        "origins": [
+          {
+            "path": "metadata/dc/date"
+          }
+        ],
+        "processors": [
+          {
+            "process": "gsub",
+            "args": {
+              "pattern": "\\?",
+              "replacement": ""
+            }
+          },
+          {
+            "process": "split",
+            "args": [
+              " - "
+            ]
+          },
+          {
+            "process": "last"
+          }
+        ]
+      },
+      "sourceResource/date/displayDate": {
+        "origins": [
+          {
+            "path": "metadata/dc/date"
+          }
+        ]
+      },
+      "sourceResource/creator": {
+        "origins": [
+          {
+            "path": "metadata/dc/creator"
+          }
+        ],
+        "processors": [
+          {
+            "process": "gsub",
+            "args": {
+              "pattern": "\\.",
+              "replacement": ""
+            }
+          }
+        ]
+      },
+      "sourceResource/description": {
+        "origins": [
+          {
+            "path": "metadata/dc/description"
+          }
+        ],
+        "processors": [
+          {
+            "process": "strip"
+          },
+          {
+            "process": "gsub",
+            "args": {
+              "pattern": "\\s+\\s+",
+              "replacement": " "
+            }
+          }
+        ]
+      },
+      "sourceResource/contributor": {
+        "origins": [
+          {
+            "path": "metadata/dc/contributor"
+          }
+        ]
+      },
+      "sourceResource/format": {
+        "origins": [
+          {
+            "path": "metadata/dc/format[last()]||metadata/dc/format"
+          }
+        ],
+        "processors": [
+          {
+            "process": "strip"
+          },
+          {
+            "process": "flatten"
+          },
+          {
+            "process": "join",
+            "args": [
+              ""
+            ]
+          },
+          {
+            "process": "gsub",
+            "args": {
+              "pattern": ";",
+              "replacement": ""
+            }
+          }
+        ]
+      },
+      "sourceResource/rights": {
+        "origins": [
+          {
+            "path": "metadata/dc/rights"
+          }
+        ],
+        "processors": [
+          {
+            "process": "strip"
+          },
+          {
+            "process": "gsub",
+            "args": {
+              "pattern": "\\s+\\s+",
+              "replacement": " "
+            }
+          }
+        ]
+      },
+      "sourceResource/relation": {
+        "origins": [
+          {
+            "path": "metadata/dc/relation"
+          }
+        ],
+        "processors": [
+          {
+            "process": "split",
+            "args": [
+              ";"
+            ]
+          },
+          {
+            "process": "strip"
+          }
+        ]
+      },
+      "sourceResource/collection/title": {
+        "lookup_keys": [
+          {
+            "token": "$setSpec",
+            "path": "header/setSpec"
+          }
+        ],
+        "origins": [
+          {
+            "path": "enrichments/listSets/records/$setSpec/setDescription/oclcdc/title"
+          }
+        ]
+      },
+      "sourceResource/collection/description": {
+        "lookup_keys": [
+          {
+            "token": "$setSpec",
+            "path": "header/setSpec"
+          }
+        ],
+        "origins": [
+          {
+            "path": "enrichments/listSets/records/$setSpec/setDescription/oclcdc/description"
+          }
+        ]
+      },
+      "sourceResource/type": {
+        "origins": [
+          {
+            "path": "metadata/dc/type"
+          }
+        ]
+      },
+      "identifier": {
+        "origins": [
+          {
+            "path": "header/identifier"
           }
         ]
       }
