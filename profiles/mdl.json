@@ -57,7 +57,7 @@
       },
       "originalRecord": "dpla:originalRecord"
     },
-    "fields": {
+"fields": {
       "pushToDPLA": {
         "origins": [
           {
@@ -253,6 +253,13 @@
             "args": {
               "pattern": "\\s--\\s",
               "replacement": "--"
+            }
+          },
+          {
+            "process": "gsub",
+            "args": {
+              "pattern": ";",
+              "replacement": ""
             }
           }
         ]
