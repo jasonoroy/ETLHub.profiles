@@ -57,7 +57,7 @@
       },
       "originalRecord": "dpla:originalRecord"
     },
-"fields": {
+ "fields": {
       "pushToDPLA": {
         "origins": [
           {
@@ -219,6 +219,26 @@
                     ],
                     "country": "United States"
                   }
+                },
+                {
+                  "matches": [
+                    [
+                      "Alexandria",
+                      "Douglas",
+                      "Minnesota",
+                      "United States",
+                      "Mary Lake"
+                    ]
+                  ],
+                  "returns": {
+                    "county": "Douglas",
+                    "name": "Mary Lake, Alexandria",
+                    "state": "Minnesota",
+                    "coordinates": [
+                      "45.827483,-95.473436"
+                    ],
+                    "country": "United States"
+                  }
                 }
               ]
             }
@@ -331,7 +351,7 @@
           {
             "process": "gsub",
             "args": {
-              "pattern": "\\.",
+              "pattern": "\\.$",
               "replacement": ""
             }
           }
