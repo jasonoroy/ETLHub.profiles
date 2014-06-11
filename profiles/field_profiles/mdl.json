@@ -120,6 +120,13 @@
           "pattern": "\\s+\\s+",
           "replacement": " "
         }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\;$",
+          "replacement": ""
+        }
       }
     ]
   },
