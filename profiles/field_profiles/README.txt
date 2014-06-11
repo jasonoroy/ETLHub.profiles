@@ -1,0 +1,3 @@
+Changes to profile field transformations happen frequently when the profile is being developed. The core configuration for a given profile, which tells the transformation and extraction services where to find the endpoint, etc change infrequently. So, I have broken the profile metadata into two parts withing the client so that they may be updated separately. There are now two text areas on the Import Job edit view, one for the field metadata and one for core configuration metadata.
+
+This directory will contain field transformation directives alone.
