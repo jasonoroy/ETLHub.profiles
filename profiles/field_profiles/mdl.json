@@ -6,31 +6,65 @@
       }
     ]
   },
-  "identifier": {
+  "sourceResource/language": {
     "origins": [
       {
-        "path": "guid[last()]"
+        "path": "metadata/dc/language"
+      }
+    ],
+    "processors": [
+      {
+        "process": "encode_language_by_name"
       }
     ]
   },
   "isShownAt": {
     "origins": [
       {
-        "path": "uri"
+        "path": "metadata/dc/identifier[last()]"
+      }
+    ]
+  },
+  "sourceResource/extent": {
+    "origins": [
+      {
+        "path": "metadata/dc/format[first()]"
       }
     ]
   },
   "object": {
     "origins": [
       {
-        "path": "image[first()]"
+        "path": "header/identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "oai:reflections.mndigital.org:",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "/",
+          "replacement": "&CISOPTR="
+        }
+      },
+      {
+        "process": "affix",
+        "args": {
+          "prefix": "http://reflections.mndigital.org/cgi-bin/thumbnail.exe?CISOROOT=/"
+        }
       }
     ]
   },
   "dataProvider": {
     "origins": [
       {
-        "path": "origin[last()]"
+        "path": "metadata/dc/publisher"
       }
     ]
   },
@@ -45,8 +79,8 @@
     "origins": [
       {
         "value": {
-          "@id": "http://dp.la/api/contributor/mpr",
-          "name": "Minnesota Public Radio"
+          "@id": "http://dp.la/api/contributor/mdl",
+          "name": "Minnesota Digital Library"
         }
       }
     ]
@@ -54,116 +88,113 @@
   "title": {
     "origins": [
       {
-        "path": "title"
+        "path": "metadata/dc/title"
       }
     ],
     "processors": [
       {
-        "process": "html_decode"
+        "process": "strip"
       },
       {
-        "process": "strip_html"
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s+\\s+",
+          "replacement": " "
+        }
       }
     ]
   },
   "sourceResource/title": {
     "origins": [
       {
-        "path": "title"
+        "path": "metadata/dc/title"
       }
     ],
     "processors": [
       {
-        "process": "html_decode"
-      },
-      {
-        "process": "strip_html"
-      }
-    ]
-  },
-  "sourceResource/date/begin": {
-    "origins": [
-      {
-        "path": "publish_date[last()]"
-      }
-    ],
-    "processors": [
-      {
-        "process": "split",
-        "args": [
-          "-"
-        ]
-      },
-      {
-        "process": "first"
-      }
-    ]
-  },
-  "sourceResource/date/end": {
-    "origins": [
-      {
-        "path": "publish_date[last()]"
-      }
-    ],
-    "processors": [
-      {
-        "process": "split",
-        "args": [
-          "-"
-        ]
-      },
-      {
-        "process": "first"
-      }
-    ]
-  },
-  "sourceResource/date/displayDate": {
-    "origins": [
-      {
-        "path": "publish_date[last()]"
-      }
-    ]
-  },
-  "sourceResource/creator": {
-    "origins": [
-      {
-        "path": "author"
-      }
-    ],
-    "processors": [
-      {
-        "process": "compact"
-      },
-      {
-        "process": "nil_if_empty"
-      }
-    ]
-  },
-  "sourceResource/description": {
-    "origins": [
-      {
-        "path": "summary"
-      }
-    ],
-    "processors": [
-      {
-        "process": "html_decode"
-      },
-      {
-        "process": "strip_html"
+        "process": "strip"
       },
       {
         "process": "gsub",
         "args": {
-          "pattern": "Dateline: St. Paul, Minn.",
-          "replacement": ""
+          "pattern": "\\s+\\s+",
+          "replacement": " "
         }
-      },
+      }
+    ]
+  },
+  "sourceResource/spatial": {
+    "origins": [
       {
-        "process": "match_first",
-        "args": [
-          ".*\n$"
-        ]
+        "path": "metadata/dc/coverage"
+      }
+    ],
+    "processors": [
+      {
+        "process": "geonames_postal",
+        "args": {
+          "username": "umntestuser",
+          "defaults": [
+            {
+              "matches": [
+                [
+                  "Minneapolis",
+                  "Downtown",
+                  "Hennepin",
+                  "Minnesota",
+                  "United States"
+                ],
+                [
+                  "Minneapolis",
+                  "Hennepin",
+                  "Minnesota",
+                  "United States"
+                ],
+                [
+                  "Minneapolis",
+                  "Minnesota",
+                  "United States"
+                ],
+                [
+                  "Minneapolis",
+                  "Minnesota"
+                ],
+                [
+                  "Minneapolis"
+                ]
+              ],
+              "returns": {
+                "county": "Hennepin County",
+                "name": "Minneapolis",
+                "state": "Minnesota",
+                "coordinates": [
+                  "44.9871, -93.2737"
+                ],
+                "country": "United States"
+              }
+            },
+            {
+              "matches": [
+                [
+                  "Alexandria",
+                  "Douglas",
+                  "Minnesota",
+                  "United States",
+                  "Mary Lake"
+                ]
+              ],
+              "returns": {
+                "county": "Douglas",
+                "name": "Mary Lake, Alexandria",
+                "state": "Minnesota",
+                "coordinates": [
+                  "45.827483,-95.473436"
+                ],
+                "country": "United States"
+              }
+            }
+          ]
+        }
       }
     ]
   },
@@ -196,6 +227,272 @@
           "pattern": "\\s--\\s",
           "replacement": "--"
         }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": ";",
+          "replacement": ""
+        }
+      }
+    ]
+  },
+  "sourceResource/date/begin": {
+    "origins": [
+      {
+        "path": "metadata/dc/date"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\?",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "split",
+        "args": [
+          " - "
+        ]
+      },
+      {
+        "process": "first"
+      },
+      {
+        "process": "split",
+        "args": [
+          "-"
+        ]
+      },
+      {
+        "process": "first"
+      }
+    ]
+  },
+  "sourceResource/date/end": {
+    "origins": [
+      {
+        "path": "metadata/dc/date"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\?",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "split",
+        "args": [
+          " - "
+        ]
+      },
+      {
+        "process": "first"
+      },
+      {
+        "process": "split",
+        "args": [
+          "-"
+        ]
+      },
+      {
+        "process": "first"
+      }
+    ]
+  },
+  "sourceResource/date/displayDate": {
+    "origins": [
+      {
+        "path": "metadata/dc/date"
+      }
+    ]
+  },
+  "sourceResource/creator": {
+    "origins": [
+      {
+        "path": "metadata/dc/creator"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\.$",
+          "replacement": ""
+        }
+      }
+    ]
+  },
+  "sourceResource/description": {
+    "origins": [
+      {
+        "path": "metadata/dc/description"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s+\\s+",
+          "replacement": " "
+        }
+      }
+    ]
+  },
+  "sourceResource/contributor": {
+    "origins": [
+      {
+        "path": "metadata/dc/contributor"
+      }
+    ]
+  },
+  "sourceResource/format": {
+    "origins": [
+      {
+        "path": "metadata/dc/format[last()]||metadata/dc/format"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": ";",
+          "replacement": ""
+        }
+      }
+    ]
+  },
+  "sourceResource/rights": {
+    "origins": [
+      {
+        "path": "metadata/dc/rights"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s+\\s+",
+          "replacement": " "
+        }
+      }
+    ]
+  },
+  "sourceResource/relation": {
+    "origins": [
+      {
+        "path": "metadata/dc/relation"
+      }
+    ],
+    "processors": [
+      {
+        "process": "split",
+        "args": [
+          ";"
+        ]
+      },
+      {
+        "process": "strip"
+      }
+    ]
+  },
+  "sourceResource/collection/title": {
+    "lookup_keys": [
+      {
+        "token": "$setSpec",
+        "path": "header/setSpec"
+      }
+    ],
+    "origins": [
+      {
+        "path": "enrichments/listSets/records/$setSpec/setDescription/oclcdc/title"
+      }
+    ]
+  },
+  "sourceResource/collection/description": {
+    "lookup_keys": [
+      {
+        "token": "$setSpec",
+        "path": "header/setSpec"
+      }
+    ],
+    "origins": [
+      {
+        "path": "enrichments/listSets/records/$setSpec/setDescription/oclcdc/description"
+      }
+    ]
+  },
+  "sourceResource/type": {
+    "origins": [
+      {
+        "path": "metadata/dc/type"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "Still Image",
+          "replacement": "image"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "Still Image;",
+          "replacement": "image"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "Cartographic",
+          "replacement": "image"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "Cartographic;",
+          "replacement": "image"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "Text",
+          "replacement": "text"
+        }
+      }
+    ]
+  },
+  "identifier": {
+    "origins": [
+      {
+        "path": "header/identifier"
       }
     ]
   }
