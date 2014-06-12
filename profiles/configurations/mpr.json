@@ -1,0 +1,55 @@
+{
+  "remote_storage": {
+    "AWS_ACCESS_KEY_ID": "<key here>",
+    "AWS_SECRET_ACCESS_KEY": "<key here>",
+    "AWS_REGION": "us-west-2",
+    "AWS_BUCKET": "dpla.hub.umn.mpr"
+  },
+  "validator": {
+    "base_url": "http://localhost:8083/api/v1/validate",
+    "api_key": "<key here>",
+    "dpla_api_key": "<key here>"
+  },
+  "extractor": {
+    "records": {
+      "base_url": "http://localhost:8083/api/v1/extract",
+      "endpoint_type": "simple_get",
+      "endpoint": "http%3A%2F%2Fmnmediasource.org%2Fdezi%2Fmpr%2Fsearch%3Fq%3Dguid%21%3Dnull%26h%3D0%26s%3Dpublish_date%2520desc%26f%3D0%26p%3D1000",
+      "api_key": "<key here>",
+      "batch_param_variable": "o",
+      "origin_path": "records",
+      "allow_parallel_extraction": false
+    }
+  },
+  "transformer": {
+    "base_url": "http://localhost:8083/api/v1/transform",
+    "api_key": "<key here>",
+    "@context": {
+      "edm": "http://www.europeana.eu/schemas/edm/",
+      "isShownAt": "edm:isShownAt",
+      "dpla": "http://dp.la/terms/",
+      "dataProvider": "edm:dataProvider",
+      "aggregatedDigitalResource": "dpla:aggregatedDigitalResource",
+      "state": "dpla:state",
+      "hasView": "edm:hasView",
+      "provider": "edm:provider",
+      "collection": "dpla:aggregation",
+      "object": "edm:object",
+      "stateLocatedIn": "dpla:stateLocatedIn",
+      "begin": {
+        "@type": "xsd:date",
+        "@id": "dpla:dateRangeStart"
+      },
+      "@vocab": "http://purl.org/dc/terms/",
+      "LCSH": "http://id.loc.gov/authorities/subjects",
+      "sourceResource": "edm:sourceResource",
+      "name": "xsd:string",
+      "coordinates": "dpla:coordinates",
+      "end": {
+        "@type": "xsd:date",
+        "@id": "dpla:dateRangeEnd"
+      },
+      "originalRecord": "dpla:originalRecord"
+    }
+  }
+}
