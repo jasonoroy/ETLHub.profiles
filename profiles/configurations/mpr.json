@@ -17,8 +17,7 @@
       "endpoint": "http%3A%2F%2Fmnmediasource.org%2Fdezi%2Fmpr%2Fsearch%3Fq%3Dguid%21%3Dnull%26h%3D0%26s%3Dpublish_date%2520desc%26f%3D0%26p%3D1000",
       "api_key": "<key here>",
       "batch_param_variable": "o",
-      "origin_path": "records",
-      "allow_parallel_extraction": false
+      "origin_path": "records"
     }
   },
   "transformer": {
