@@ -13,10 +13,10 @@
       }
     ]
   },
-  "object/rights": {
+  "object": {
     "origins": [
       {
-        "value": "http://www.mnhs.org/copyright"
+        "path": "image"
       }
     ]
   },
