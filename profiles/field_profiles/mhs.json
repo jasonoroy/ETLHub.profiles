@@ -93,6 +93,15 @@
       {
         "path": "event_date[first()]"
       }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "T00:00:00Z",
+          "replacement": ""
+        }
+      }
     ]
   },
   "sourceResource/date/begin": {
