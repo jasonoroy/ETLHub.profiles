@@ -6,13 +6,13 @@
     "AWS_BUCKET": "dpla.hub.umn.mhs"
   },
   "validator": {
-    "base_url": "http://localhost:8083/api/v1/validate",
+    "base_url": "http://hub-services.lib.umn.edu/api/v1/validate",
     "api_key": "<key here>",
     "dpla_api_key": "<key here>"
   },
   "extractor": {
     "records": {
-      "base_url": "http://localhost:8083/api/v1/extract",
+      "base_url": "http://hub-services.lib.umn.edu/api/v1/extract",
       "endpoint_type": "s3",
       "endpoint": "dpla.hub.umn.mhs.endpoint",
       "api_key": "<key here>",
@@ -21,7 +21,7 @@
     }
   },
   "transformer": {
-    "base_url": "http://localhost:8083/api/v1/transform",
+    "base_url": "http://hub-services.lib.umn.edu/api/v1/transform",
     "api_key": "<key here>",
     "@context": {
       "edm": "http://www.europeana.eu/schemas/edm/",
