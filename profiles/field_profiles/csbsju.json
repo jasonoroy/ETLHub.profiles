@@ -1,0 +1,151 @@
+{
+  "isShownAt": {
+    "origins": [
+      {
+        "path": "metadata/dc/identifier[last()]"
+      }
+    ]
+  },
+  "provider": {
+    "origins": [
+      {
+        "value": {
+          "@id": "http://dp.la/api/contributor/csbsju",
+          "name": "College of Saint Benedict & Saint John's University"
+        }
+      }
+    ]
+  },
+  "identifier": {
+    "origins": [
+      {
+        "path": "header/identifier"
+      }
+    ]
+  },
+  "title": {
+    "origins": [
+      {
+        "path": "metadata/dc/title"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s+\\s+",
+          "replacement": " "
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\;$",
+          "replacement": ""
+        }
+      }
+    ]
+  },
+  "sourceResource/title": {
+    "origins": [
+      {
+        "path": "metadata/dc/title"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s+\\s+",
+          "replacement": " "
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\;$",
+          "replacement": ""
+        }
+      }
+    ]
+  },
+  "sourceResource/rights": {
+    "origins": [
+      {
+        "path": "metadata/dc/rights"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      }
+    ]
+  },
+  "object": {
+    "origins": [
+      {
+        "path": "header/identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "/",
+          "replacement": "/id/"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "oai:cdm.csbsju.edu:",
+          "replacement": "http://cdm.csbsju.edu/utils/getthumbnail/collection/"
+        }
+      }
+    ]
+  },
+  "sourceResource/description": {
+    "origins": [
+      {
+        "path": "metadata/dc/description"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      }
+    ]
+  },
+  "sourceResource/collection/title": {
+    "lookup_keys": [
+      {
+        "token": "$setSpec",
+        "path": "header/setSpec"
+      }
+    ],
+    "origins": [
+      {
+        "path": "enrichments/listSets/records/$setSpec/setName"
+      }
+    ]
+  },
+  "sourceResource/collection/description": {
+    "lookup_keys": [
+      {
+        "token": "$setSpec",
+        "path": "header/setSpec"
+      }
+    ],
+    "origins": [
+      {
+        "path": "enrichments/listSets/records/$setSpec/setDescription/dc/description"
+      }
+    ]
+  }
+}

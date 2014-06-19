@@ -1,0 +1,274 @@
+{
+  "dataProvider": {
+    "origins": [
+      {
+        "path": "organization"
+      }
+    ]
+  },
+  "sourceResource/rights": {
+    "origins": [
+      {
+        "value": "http://www.mnhs.org/copyright"
+      }
+    ]
+  },
+  "object/rights": {
+    "origins": [
+      {
+        "value": "http://www.mnhs.org/copyright"
+      }
+    ]
+  },
+  "identifier": {
+    "origins": [
+      {
+        "path": "identifier_display"
+      }
+    ]
+  },
+  "sourceResource/type": {
+    "origins": [
+      {
+        "path": "type"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "Photographs",
+          "replacement": "image"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "Text",
+          "replacement": "text"
+        }
+      }
+    ]
+  },
+  "sourceResource/format": {
+    "origins": [
+      {
+        "path": "type"
+      }
+    ]
+  },
+  "isShownAt": {
+    "origins": [
+      {
+        "path": "link"
+      }
+    ]
+  },
+  "provider": {
+    "origins": [
+      {
+        "value": {
+          "@id": "http://dp.la/api/contributor/mhs",
+          "name": "Minnesota Historical Society"
+        }
+      }
+    ]
+  },
+  "sourceResource/collection/title": {
+    "origins": [
+      {
+        "path": "collection_name"
+      }
+    ]
+  },
+  "sourceResource/creator": {
+    "origins": [
+      {
+        "path": "name_display"
+      }
+    ]
+  },
+  "sourceResource/date/displayDate": {
+    "origins": [
+      {
+        "path": "event_date[first()]"
+      }
+    ]
+  },
+  "sourceResource/date/begin": {
+    "origins": [
+      {
+        "path": "event_date[first()]"
+      }
+    ],
+    "processors": [
+      {
+        "process": "split",
+        "args": [
+          "-"
+        ]
+      },
+      {
+        "process": "first"
+      }
+    ]
+  },
+  "sourceResource/date/end": {
+    "origins": [
+      {
+        "path": "event_date[last()]"
+      }
+    ],
+    "processors": [
+      {
+        "process": "split",
+        "args": [
+          "-"
+        ]
+      },
+      {
+        "process": "first"
+      }
+    ]
+  },
+  "sourceResource/description": {
+    "origins": [
+      {
+        "path": "description"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      }
+    ]
+  },
+  "sourceResource/physicalMedium": {
+    "origins": [
+      {
+        "path": "type_display"
+      }
+    ]
+  },
+  "sourceResource/spatial": {
+    "origins": [
+      {
+        "path": "spatial"
+      }
+    ],
+    "processors": [
+      {
+        "process": "geonames_postal",
+        "args": {
+          "username": "umntestuser",
+          "defaults": [
+            {
+              "matches": [
+                [
+                  "Minneapolis",
+                  "Downtown",
+                  "Hennepin",
+                  "Minnesota",
+                  "United States"
+                ],
+                [
+                  "Minneapolis",
+                  "Hennepin",
+                  "Minnesota",
+                  "United States"
+                ],
+                [
+                  "Minneapolis",
+                  "Minnesota",
+                  "United States"
+                ],
+                [
+                  "Minneapolis",
+                  "Minnesota"
+                ],
+                [
+                  "Minneapolis"
+                ]
+              ],
+              "returns": {
+                "county": "Hennepin County",
+                "name": "Minneapolis",
+                "state": "Minnesota",
+                "coordinates": [
+                  "44.9871, -93.2737"
+                ],
+                "country": "United States"
+              }
+            },
+            {
+              "matches": [
+                [
+                  "Alexandria",
+                  "Douglas",
+                  "Minnesota",
+                  "United States",
+                  "Mary Lake"
+                ]
+              ],
+              "returns": {
+                "county": "Douglas",
+                "name": "Mary Lake, Alexandria",
+                "state": "Minnesota",
+                "coordinates": [
+                  "45.827483,-95.473436"
+                ],
+                "country": "United States"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "sourceResource/stateLocatedIn/iso3166‑2": {
+    "origins": [
+      {
+        "value": "US-MN"
+      }
+    ]
+  },
+  "sourceResource/subject": {
+    "label": "name",
+    "origins": [
+      {
+        "path": "subject"
+      }
+    ],
+    "processors": [
+      {
+        "process": "split",
+        "args": [
+          "; "
+        ]
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "unique"
+      },
+      {
+        "process": "strip"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s--\\s",
+          "replacement": "--"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": ";",
+          "replacement": ""
+        }
+      }
+    ]
+  }
+}
