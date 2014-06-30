@@ -21,8 +21,9 @@
     },
     "enrichments": [
       {
-        "url": "http://hub-services.lib.umn.edu/api/v1/extract?endpoint=http://reflections.mndigital.org/oai/oai2.php&endpoint_type=oai_dc&api_key=  <key here>  &verb=ListSets",
-        "key": "listSets"
+        "url": "http://hub-services.lib.umn.edu/api/v1/extract?endpoint=http://reflections.mndigital.org/oai/oai2.php&endpoint_type=oai_dc&verb=ListSets",
+        "key": "listSets",
+        "api_key": "<key here>"
       }
     ]
   },
