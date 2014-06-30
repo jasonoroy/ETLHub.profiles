@@ -1,0 +1,222 @@
+{
+  "pushToDPLA": {
+    "origins": [
+      {
+        "value": true
+      }
+    ]
+  },
+  "identifier": {
+    "origins": [
+      {
+        "path": "guid[last()]"
+      }
+    ]
+  },
+  "isShownAt": {
+    "origins": [
+      {
+        "path": "uri"
+      }
+    ]
+  },
+  "object": {
+    "origins": [
+      {
+        "path": "image[first()]"
+      }
+    ]
+  },
+  "dataProvider": {
+    "origins": [
+      {
+        "path": "origin[last()]"
+      }
+    ]
+  },
+  "sourceResource/publisher": {
+    "origins": [
+      {
+        "path": "metadata/dc/source"
+      }
+    ]
+  },
+  "provider": {
+    "origins": [
+      {
+        "value": {
+          "@id": "http://dp.la/api/contributor/mpr",
+          "name": "Minnesota Public Radio"
+        }
+      }
+    ]
+  },
+  "title": {
+    "origins": [
+      {
+        "path": "title"
+      }
+    ],
+    "processors": [
+      {
+        "process": "html_decode"
+      },
+      {
+        "process": "strip_html"
+      }
+    ]
+  },
+  "sourceResource/title": {
+    "origins": [
+      {
+        "path": "title"
+      }
+    ],
+    "processors": [
+      {
+        "process": "html_decode"
+      },
+      {
+        "process": "strip_html"
+      }
+    ]
+  },
+  "sourceResource/language": {
+    "origins": [
+      {
+        "value": [
+          {
+            "iso639_3": "eng",
+            "name": "English"
+          }
+        ]
+      }
+    ],
+    "processors": [
+      {
+        "process": "html_decode"
+      },
+      {
+        "process": "strip_html"
+      }
+    ]
+  },
+  "sourceResource/date/begin": {
+    "origins": [
+      {
+        "path": "publish_date[last()]"
+      }
+    ],
+    "processors": [
+      {
+        "process": "split",
+        "args": [
+          "-"
+        ]
+      },
+      {
+        "process": "first"
+      }
+    ]
+  },
+  "sourceResource/date/end": {
+    "origins": [
+      {
+        "path": "publish_date[last()]"
+      }
+    ],
+    "processors": [
+      {
+        "process": "split",
+        "args": [
+          "-"
+        ]
+      },
+      {
+        "process": "first"
+      }
+    ]
+  },
+  "sourceResource/date/displayDate": {
+    "origins": [
+      {
+        "path": "publish_date[last()]"
+      }
+    ]
+  },
+  "sourceResource/creator": {
+    "origins": [
+      {
+        "path": "author"
+      }
+    ],
+    "processors": [
+      {
+        "process": "compact"
+      },
+      {
+        "process": "nil_if_empty"
+      }
+    ]
+  },
+  "sourceResource/description": {
+    "origins": [
+      {
+        "path": "summary"
+      }
+    ],
+    "processors": [
+      {
+        "process": "html_decode"
+      },
+      {
+        "process": "strip_html"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "Dateline: St. Paul, Minn.",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "match_first",
+        "args": [
+          ".*\n$"
+        ]
+      }
+    ]
+  },
+  "sourceResource/subject": {
+    "label": "name",
+    "origins": [
+      {
+        "path": "metadata/dc/subject"
+      }
+    ],
+    "processors": [
+      {
+        "process": "split",
+        "args": [
+          "; "
+        ]
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "unique"
+      },
+      {
+        "process": "strip"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s--\\s",
+          "replacement": "--"
+        }
+      }
+    ]
+  }
+}
