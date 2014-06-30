@@ -241,7 +241,15 @@
           "pattern": ";",
           "replacement": ""
         }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\"",
+          "replacement": ""
+        }
       }
+      
     ]
   },
   "sourceResource/date/begin": {
