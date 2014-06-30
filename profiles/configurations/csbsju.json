@@ -20,8 +20,9 @@
     },
     "enrichments": [
       {
-        "url": "http://hub-services.lib.umn.edu/api/v1/extract?endpoint_type=oai_dc&api_key=  <key here>   &verb=ListSets&endpoint=http://cdm.csbsju.edu/oai/oai.php&cache_response=true",
-        "key": "listSets"
+        "url": "http://hub-services.lib.umn.edu/api/v1/extract?endpoint_type=oai_dc&verb=ListSets&endpoint=http://cdm.csbsju.edu/oai/oai.php&cache_response=true",
+        "key": "listSets",
+        "api_key": "<key here>"
       }
     ]
   },
