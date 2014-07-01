@@ -434,7 +434,7 @@
     ]
   },
   "sourceResource/collection/title": {
-    "lookup_keys": [
+    "path_keys": [
       {
         "token": "$setSpec",
         "path": "header/setSpec"
@@ -447,7 +447,7 @@
     ]
   },
   "sourceResource/collection/description": {
-    "lookup_keys": [
+    "path_keys": [
       {
         "token": "$setSpec",
         "path": "header/setSpec"
