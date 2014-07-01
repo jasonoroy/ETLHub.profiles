@@ -188,7 +188,6 @@
     ]
   },
   "sourceResource/subject": {
-    "label": "name",
     "origins": [
       {
         "path": "metadata/dc/subject"
@@ -216,6 +215,10 @@
           "pattern": "\\s--\\s",
           "replacement": "--"
         }
+      },
+      {
+        "process": "apply_label",
+        "args": "name"
       }
     ]
   }

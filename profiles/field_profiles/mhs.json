@@ -242,7 +242,6 @@
     ]
   },
   "sourceResource/subject": {
-    "label": "name",
     "origins": [
       {
         "path": "subject"
@@ -277,6 +276,10 @@
           "pattern": ";",
           "replacement": ""
         }
+      },
+      {
+        "process": "apply_label",
+        "args": "name"
       }
     ]
   }
