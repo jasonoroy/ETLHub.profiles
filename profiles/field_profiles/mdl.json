@@ -249,7 +249,6 @@
           "replacement": ""
         }
       }
-      
     ]
   },
   "sourceResource/date/begin": {
@@ -307,7 +306,7 @@
         ]
       },
       {
-        "process": "first"
+        "process": "last"
       },
       {
         "process": "split",
@@ -500,6 +499,13 @@
         "args": {
           "pattern": "Text",
           "replacement": "text"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "image;",
+          "replacement": "image"
         }
       }
     ]
