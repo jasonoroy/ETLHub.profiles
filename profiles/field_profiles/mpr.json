@@ -190,7 +190,7 @@
   "sourceResource/subject": {
     "origins": [
       {
-        "path": "metadata/dc/subject"
+        "path": "tags"
       }
     ],
     "processors": [
