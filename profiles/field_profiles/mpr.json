@@ -1,11 +1,4 @@
 {
-  "pushToDPLA": {
-    "origins": [
-      {
-        "value": true
-      }
-    ]
-  },
   "identifier": {
     "origins": [
       {
