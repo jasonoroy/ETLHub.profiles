@@ -84,14 +84,6 @@
           }
         ]
       }
-    ],
-    "processors": [
-      {
-        "process": "html_decode"
-      },
-      {
-        "process": "strip_html"
-      }
     ]
   },
   "sourceResource/date/begin": {
