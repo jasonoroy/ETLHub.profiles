@@ -147,5 +147,24 @@
         "path": "enrichments/listSets/records/$setSpec/setDescription/dc/description"
       }
     ]
+  },
+  "header/setSpec": {
+    "origins": [
+      {
+        "path": "header/setSpec"
+      }
+    ],
+    "processors": [
+      {
+        "process": "nullify"
+      }
+    ],
+    "record_rejectors": [
+      {
+          "run": "before_processors",
+          "reject": "if_match",
+          "args": "HMMLMicrofi"
+      }
+    ]
   }
 }
