@@ -168,9 +168,9 @@
     ],
     "record_rejectors": [
       {
-          "run": "before_processors",
-          "reject": "if_match",
-          "args": "HMMLMicrofi"
+        "run": "before_processors",
+        "reject": "if_match",
+        "args": "HMMLMicrofi"
       }
     ]
   }
