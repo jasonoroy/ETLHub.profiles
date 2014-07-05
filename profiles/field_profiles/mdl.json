@@ -1,4 +1,11 @@
 {
+  "status": {
+    "origins": [
+      {
+        "path": "header/status"
+      }
+    ]
+  },
   "pushToDPLA": {
     "origins": [
       {
