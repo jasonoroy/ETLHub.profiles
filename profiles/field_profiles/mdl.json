@@ -6,13 +6,6 @@
       }
     ]
   },
-  "pushToDPLA": {
-    "origins": [
-      {
-        "value": true
-      }
-    ]
-  },
   "sourceResource/language": {
     "origins": [
       {
