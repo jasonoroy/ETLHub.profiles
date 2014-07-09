@@ -6,6 +6,30 @@
       }
     ]
   },
+  "title": {
+    "origins": [
+      {
+        "path": "title"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      }
+    ]
+  },
+  "sourceResource/title": {
+    "origins": [
+      {
+        "path": "title"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      }
+    ]
+  },  
   "sourceResource/rights": {
     "origins": [
       {
