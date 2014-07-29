@@ -152,23 +152,39 @@
     ],
     "processors": [
       {
-        "process": "html_decode"
+        "process": "strip"
       },
       {
-        "process": "strip_html"
+        "process": "split",
+        "args": [
+          "\n"
+        ]
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
       },
       {
         "process": "gsub",
         "args": {
-          "pattern": "Dateline: St. Paul, Minn.",
+          "pattern": "{%.*%}",
           "replacement": ""
         }
       },
       {
-        "process": "match_first",
-        "args": [
-          ".*\n$"
-        ]
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s{2,}",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "html_decode"
+      },
+      {
+        "process": "strip_html"
       }
     ]
   },
