@@ -472,28 +472,7 @@
       {
         "process": "gsub",
         "args": {
-          "pattern": "Still Image",
-          "replacement": "image"
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "Still Image;",
-          "replacement": "image"
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "Cartographic",
-          "replacement": "image"
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "Cartographic;",
+          "pattern": "Still Image|Still Image;|Cartographic|Cartographic;|image;|",
           "replacement": "image"
         }
       },
@@ -502,13 +481,6 @@
         "args": {
           "pattern": "Text",
           "replacement": "text"
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "image;",
-          "replacement": "image"
         }
       }
     ]
