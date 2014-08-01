@@ -472,7 +472,7 @@
       {
         "process": "gsub",
         "args": {
-          "pattern": "Still Image|Still Image;|Cartographic|Cartographic;|image;|",
+          "pattern": "Still Image|Still Image;|Cartographic|Cartographic;|image;",
           "replacement": "image"
         }
       },
