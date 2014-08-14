@@ -19,10 +19,11 @@
     "records": {
       "base_url": "http://hub-services.lib.umn.edu/api/v1/extract",
       "endpoint_type": "s3",
-      "endpoint": "dpla.hub.umn.mhs.endpoint",
+      "endpoint": "dpla.umn.mhs.endpoint",
       "api_key": "<key here>",
-      "origin_path": "searchRetrieveResponse%2Frecord",
-      "encoded_params": "AWS_ACCESS_KEY_ID%3D<key here>%26AWS_SECRET_ACCESS_KEY%3D<key here>"
+      "origin_path": "searchRetrieveResponse/record",
+      "aws_access_key_id": "<key here>",
+      "aws_access_secret_key": "<key here>"
     }
   },
   "transformer": {
