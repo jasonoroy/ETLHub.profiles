@@ -292,7 +292,7 @@
   "isShownAt": {
     "origins": [
       {
-        "path": "metadata/dc/identifier[last()]|metadata/dc/identifier"
+        "path": "metadata/dc/identifier[last()]||metadata/dc/identifier"
       }
     ]
   },
