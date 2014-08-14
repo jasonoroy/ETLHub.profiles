@@ -5,6 +5,11 @@
     "AWS_REGION": "us-west-2",
     "AWS_BUCKET": "dpla.hub.umn.mdl"
   },
+  "local_storage": true,
+  "indexer": {
+    "index": "dpla",
+    "host": "elastic.host.here.org"
+  },
   "validator": {
     "base_url": "http://hub-services.lib.umn.edu/api/v1/validate",
     "api_key": "<key here>",
