@@ -1,34 +1,24 @@
 {
-  "remote_storage": {
-    "AWS_ACCESS_KEY_ID": "<key here>",
-    "AWS_SECRET_ACCESS_KEY": "<key here>",
-    "AWS_REGION": "us-west-2",
-    "AWS_BUCKET": "dpla.hub.umn.mhs"
-  },
   "local_storage": true,
-  "indexer": {
-    "index": "dpla",
-    "host": "elastic.host.here.org"
-  },
   "validator": {
     "base_url": "http://hub-services.lib.umn.edu/api/v1/validate",
-    "api_key": "<key here>",
-    "dpla_api_key": "<key here>"
+    "api_key": "<<<<key here>>>>",
+    "dpla_api_key": "<<<<key here>>>>"
   },
   "extractor": {
     "records": {
       "base_url": "http://hub-services.lib.umn.edu/api/v1/extract",
       "endpoint_type": "s3",
       "endpoint": "dpla.umn.mhs.endpoint",
-      "api_key": "<key here>",
+      "api_key": "<<<<key here>>>>",
       "origin_path": "searchRetrieveResponse/record",
-      "aws_access_key_id": "<key here>",
-      "aws_access_secret_key": "<key here>"
+      "aws_access_key_id": "<<<<key here>>>>",
+      "aws_access_secret_key": "<<<<key here>>>>"
     }
   },
   "transformer": {
     "base_url": "http://hub-services.lib.umn.edu/api/v1/transform",
-    "api_key": "<key here>",
+    "api_key": "<<<<key here>>>>",
     "@context": {
       "edm": "http://www.europeana.eu/schemas/edm/",
       "isShownAt": "edm:isShownAt",

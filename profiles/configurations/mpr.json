@@ -1,33 +1,23 @@
 {
-  "remote_storage": {
-    "AWS_ACCESS_KEY_ID": "<key here>",
-    "AWS_SECRET_ACCESS_KEY": "<key here>",
-    "AWS_REGION": "us-west-2",
-    "AWS_BUCKET": "dpla.hub.umn.mpr"
-  },
   "local_storage": true,
-  "indexer": {
-    "index": "dpla",
-    "host": "elastic.host.here.org"
-  },
   "validator": {
-    "base_url": "http://localhost:8083/api/v1/validate",
-    "api_key": "<key here>",
-    "dpla_api_key": "<key here>"
+    "base_url": "http://hub-services.lib.umn.edu/api/v1/validate",
+    "api_key": "<<<<key here>>>>",
+    "dpla_api_key": "<<<<key here>>>>"
   },
   "extractor": {
     "records": {
-      "base_url": "http://localhost:8083/api/v1/extract",
+      "base_url": "http://hub-services.lib.umn.edu/api/v1/extract",
       "endpoint_type": "simple_get",
       "endpoint": "http://mnmediasource.org/dezi/mpr/search?q=guid!=null&h=0&s=publish_date%20desc&f=0&p=1000",
-      "api_key": "<key here>",
-      "batch_param_variable": "o",
-      "origin_path": "records"
+      "api_key": "<<<<key here>>>>",
+      "batch_param_name": "o",
+      "origin_path": "results"
     }
   },
   "transformer": {
-    "base_url": "http://localhost:8083/api/v1/transform",
-    "api_key": "<key here>",
+    "base_url": "http://hub-services.lib.umn.edu/api/v1/transform",
+    "api_key": "<<<<key here>>>>",
     "@context": {
       "edm": "http://www.europeana.eu/schemas/edm/",
       "isShownAt": "edm:isShownAt",

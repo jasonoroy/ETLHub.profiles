@@ -1,39 +1,39 @@
 {
-  "remote_storage": {
-    "AWS_ACCESS_KEY_ID": "<key here>",
-    "AWS_SECRET_ACCESS_KEY": "<key here>",
-    "AWS_REGION": "us-west-2",
-    "AWS_BUCKET": "dpla.hub.umn.csbsju"
-  },
   "local_storage": true,
-  "indexer": {
-    "index": "dpla",
-    "host": "elastic.host.here.org"
-  },
   "validator": {
     "base_url": "http://hub-services.lib.umn.edu/api/v1/validate",
-    "api_key": "<key here>",
-    "dpla_api_key": "<key here>"
+    "api_key": "<<<<key here>>>>",
+    "dpla_api_key": "<<<<key here>>>>"
   },
   "extractor": {
     "records": {
       "base_url": "http://hub-services.lib.umn.edu/api/v1/extract",
-      "endpoint_type": "oai_dc",
-      "api_key": "<key here>",
-      "origin_path": "records",
-      "endpoint": "http://cdm.csbsju.edu/oai/oai.php"
+      "endpoint_type": "simple_get",
+      "origin_path": "OAI_PMH/ListRecords/record",
+      "batch_param_name": "resumptionToken",
+      "batch_param_path": "OAI_PMH/ListRecords/resumptionToken",
+      "api_key": "<<<<key here>>>>",
+      "endpoint": "http://cdm.csbsju.edu/oai/oai.php?verb=ListRecords&metadataPrefix=oai_dc",
+      "batch_endpoint": "http://cdm.csbsju.edu/oai/oai.php?verb=ListRecords",
+      "batch_param_skip": [
+        {
+          "from": "HMMLMicrofi:85:oclc-cdm-allsets:0000-00-00:9999-99-99:oai_dc",
+          "to": "SGD:58:oclc-cdm-allsets:0000-00-00:9999-99-99:oai_dc"
+        }
+      ]
     },
     "enrichments": [
       {
-        "url": "http://hub-services.lib.umn.edu/api/v1/extract?endpoint_type=oai_dc&verb=ListSets&endpoint=http://cdm.csbsju.edu/oai/oai.php&cache_response=true",
+        "endpoint": "http://cdm.csbsju.edu/oai/oai.php?verb=ListSets",
+        "origin_path": "OAI_PMH/ListSets/set",
         "key": "listSets",
-        "api_key": "<key here>"
+        "pivot_on_path": "setSpec"
       }
     ]
   },
   "transformer": {
     "base_url": "http://hub-services.lib.umn.edu/api/v1/transform",
-    "api_key": "<key here>",
+    "api_key": "<<<<key here>>>>",
     "@context": {
       "edm": "http://www.europeana.eu/schemas/edm/",
       "isShownAt": "edm:isShownAt",
