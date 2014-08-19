@@ -84,7 +84,7 @@
   "sourceResource/publisher": {
     "origins": [
       {
-        "path": "metadata/dc/source"
+        "path": "metadata/dc/publisher"
       }
     ]
   },
@@ -120,11 +120,6 @@
     "origins": [
       {
         "path": "metadata/dc/language"
-      }
-    ],
-    "processors": [
-      {
-        "process": "encode_language_by_name"
       }
     ]
   },
@@ -300,9 +295,16 @@
     "origins": [
       {
         "value": {
-          "@id": "http://dp.la/api/contributor/csbsju",
-          "name": "College of Saint Benedict & Saint John's University"
+          "@id": "http://dp.la/api/contributor/umn",
+          "name": "University of Minnesota"
         }
+      }
+    ]
+  },
+  "dataProvider": {
+    "origins": [
+      {
+        "value": "College of Saint Benedict & Saint John's University"
       }
     ]
   },
@@ -458,7 +460,7 @@
   "sourceResource/description": {
     "origins": [
       {
-        "path": "metadata/dc/description"
+        "path": "metadata/dc/description[first()]||metadata/dc/description"
       }
     ],
     "processors": [
