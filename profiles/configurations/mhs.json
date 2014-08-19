@@ -19,32 +19,7 @@
   "transformer": {
     "base_url": "http://hub-services.lib.umn.edu/api/v1/transform",
     "api_key": "<<<<key here>>>>",
-    "@context": {
-      "edm": "http://www.europeana.eu/schemas/edm/",
-      "isShownAt": "edm:isShownAt",
-      "dpla": "http://dp.la/terms/",
-      "dataProvider": "edm:dataProvider",
-      "aggregatedDigitalResource": "dpla:aggregatedDigitalResource",
-      "state": "dpla:state",
-      "hasView": "edm:hasView",
-      "provider": "edm:provider",
-      "collection": "dpla:aggregation",
-      "object": "edm:object",
-      "stateLocatedIn": "dpla:stateLocatedIn",
-      "begin": {
-        "@type": "xsd:date",
-        "@id": "dpla:dateRangeStart"
-      },
-      "@vocab": "http://purl.org/dc/terms/",
-      "LCSH": "http://id.loc.gov/authorities/subjects",
-      "sourceResource": "edm:sourceResource",
-      "name": "xsd:string",
-      "coordinates": "dpla:coordinates",
-      "end": {
-        "@type": "xsd:date",
-        "@id": "dpla:dateRangeEnd"
-      },
-      "originalRecord": "dpla:originalRecord"
+    "@context": "http://dp.la/api/items/context"
     }
   }
 }
