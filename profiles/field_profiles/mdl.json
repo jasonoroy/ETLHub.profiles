@@ -491,5 +491,26 @@
         "path": "header/identifier"
       }
     ]
+  },
+  "record_hash": {
+      "origins": [
+          {
+              "path": "identifier"
+          },
+          {
+              "path": "metadata/dc/publisher"
+          }
+      ],
+      "processors": [
+          {
+              "process": "join",
+              "args": [
+                  ""
+              ]
+          },
+          {
+              "process": "to_md5"
+          }
+      ]
   }
 }

@@ -306,5 +306,26 @@
         "args": "name"
       }
     ]
+  },
+  "record_hash": {
+    "origins": [
+      {
+        "path": "identifier"
+      },
+      {
+        "value": "Minnesota Historical Society"
+      }
+    ],
+    "processors": [
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      },
+      {
+        "process": "to_hash"
+      }
+    ]
   }
 }

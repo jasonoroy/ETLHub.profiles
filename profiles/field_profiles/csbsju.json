@@ -590,5 +590,26 @@
         "args": "HMMLMicrofi"
       }
     ]
+  },
+  "record_hash": {
+    "origins": [
+      {
+        "path": "header/identifier"
+      },
+      {
+        "value": "College of Saint Benedict & Saint John's University"
+      }
+    ],
+    "processors": [
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      },
+      {
+        "process": "to_md5"
+      }
+    ]
   }
 }
