@@ -38,8 +38,8 @@
     "origins": [
       {
         "value": {
-          "@id": "http://dp.la/api/contributor/mpr",
-          "name": "Minnesota Public Radio"
+          "@id": "http://dp.la/api/contributor/umn",
+          "name": "University of Minnesota Libraries"
         }
       }
     ]
