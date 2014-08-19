@@ -495,7 +495,7 @@
   "record_hash": {
       "origins": [
           {
-              "path": "identifier"
+              "path": "header/identifier"
           },
           {
               "path": "metadata/dc/publisher"
