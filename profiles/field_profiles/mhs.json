@@ -29,7 +29,7 @@
         "process": "strip"
       }
     ]
-  },  
+  },
   "sourceResource/rights": {
     "origins": [
       {
@@ -310,10 +310,10 @@
   "record_hash": {
     "origins": [
       {
-        "path": "identifier"
+        "path": "id"
       },
       {
-        "value": "Minnesota Historical Society"
+        "path": "organization"
       }
     ],
     "processors": [
@@ -324,7 +324,7 @@
         ]
       },
       {
-        "process": "to_hash"
+        "process": "to_md5"
       }
     ]
   }
