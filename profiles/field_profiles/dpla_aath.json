@@ -1,0 +1,154 @@
+{
+  "sourceResource/spatial": {
+    "origins": [
+      {
+        "path": "sourceResource/spatial"
+      }
+    ]
+  },
+  "sourceResource/contributor": {
+    "origins": [
+      {
+        "path": "sourceResource/contributor"
+      }
+    ]
+  },
+  "sourceResource/publisher": {
+    "origins": [
+      {
+        "path": "sourceResource/publisher"
+      }
+    ]
+  },
+  "sourceResource/format": {
+    "origins": [
+      {
+        "path": "sourceResource/format"
+      }
+    ]
+  },
+  "sourceResource/language": {
+    "origins": [
+      {
+        "path": "sourceResource/language"
+      }
+    ]
+  },
+  "sourceResource/date/begin": {
+    "origins": [
+      {
+        "path": "sourceResource/date/begin"
+      }
+    ]
+  },
+  "sourceResource/date/end": {
+    "origins": [
+      {
+        "path": "sourceResource/date/end"
+      }
+    ]
+  },
+  "sourceResource/date/displayDate": {
+    "origins": [
+      {
+        "path": "sourceResource/date/displayDate"
+      }
+    ]
+  },
+  "sourceResource/type": {
+    "origins": [
+      {
+        "path": "sourceResource/type"
+      }
+    ]
+  },
+  "sourceResource/subject": {
+    "origins": [
+      {
+        "path": "sourceResource/subject"
+      }
+    ]
+  },
+  "isShownAt": {
+    "origins": [
+      {
+        "path": "isShownAt"
+      }
+    ]
+  },
+  "provider": {
+    "origins": [
+      {
+        "path": "provider"
+      }
+    ]
+  },
+  "dataProvider": {
+    "origins": [
+      {
+        "path": "dataProvider"
+      }
+    ]
+  },
+  "identifier": {
+    "origins": [
+      {
+        "path": "identifier"
+      }
+    ]
+  },
+  "sourceResource/title": {
+    "origins": [
+      {
+        "path": "sourceResource/title"
+      }
+    ]
+  },
+  "sourceResource/rights": {
+    "origins": [
+      {
+        "path": "sourceResource/rights"
+      }
+    ]
+  },
+  "object": {
+    "origins": [
+      {
+        "path": "object"
+      }
+    ]
+  },
+  "sourceResource/description": {
+    "origins": [
+      {
+        "path": "sourceResource/description"
+      }
+    ]
+  },
+  "sourceResource/collection/title": {
+    "origins": [
+      {
+        "path": "sourceResource/collection/title"
+      }
+    ]
+  },
+  "sourceResource/collection/description": {
+    "origins": [
+      {
+        "path": "sourceResource/collection/description"
+      }
+    ]
+  },
+  "record_hash": {
+    "origins": [
+      {
+        "path": "@id"
+      }
+    ],
+    "processors": [
+      {
+        "process": "to_md5"
+      }
+    ]
+  }
+}
