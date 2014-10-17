@@ -1,0 +1,227 @@
+{
+  "sourceResource/language": {
+    "origins": [
+      {
+        "path": "language"
+      }
+    ],
+    "processors": [
+      {
+        "process": "encode_language_by_name"
+      }
+    ]
+  },
+  "isShownAt": {
+    "origins": [
+      {
+        "path": "purl"
+      }
+    ]
+  },
+  "sourceResource/extent": {
+    "origins": [
+      {
+        "path": "extent"
+      }
+    ]
+  },
+  "record_hash": {
+    "origins": [
+      {
+        "path": "purl"
+      }
+    ],
+    "processors": [
+      {
+        "process": "to_sha1_hex"
+      }
+    ]
+  },
+  "object": {
+    "origins": [
+      {
+        "path": "object"
+      }
+    ]
+  },
+  "dataProvider": {
+    "origins": [
+      {
+        "value": {
+          "@id": "http://dp.la/api/contributor/umn",
+          "name": "University of Minnesota Libraries"
+        }
+      }
+    ]
+  },
+  "provider": {
+    "origins": [
+      {
+        "value": {
+          "@id": "http://dp.la/api/contributor/umn",
+          "name": "University of Minnesota Libraries"
+        }
+      }
+    ]
+  },
+  "sourceResource/title": {
+    "origins": [
+      {
+        "path": "title"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s+\\s+",
+          "replacement": " "
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\;$",
+          "replacement": ""
+        }
+      }
+    ]
+  },
+  "sourceResource/spatial": {
+    "origins": [
+      {
+        "path": "coverage"
+      }
+    ],
+    "processors": [
+      {
+        "process": "geonames_postal",
+        "args": {
+          "username": "umntestuser"
+        }
+      }
+    ]
+  },
+  "sourceResource/subject": {
+    "origins": [
+      {
+        "path": "subject"
+      }
+    ],
+    "processors": [
+      {
+        "process": "split",
+        "args": [
+          "; "
+        ]
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "unique"
+      },
+      {
+        "process": "strip"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s--\\s",
+          "replacement": "--"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": ";",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\"",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "apply_label",
+        "args": "name"
+      }
+    ]
+  },
+  "sourceResource/date/begin": {
+    "origins": [
+      {
+        "path": "date_start"
+      }
+    ]
+  },
+  "sourceResource/date/end": {
+    "origins": [
+      {
+        "path": "date_end"
+      }
+    ]
+  },
+  "sourceResource/date/displayDate": {
+    "origins": [
+      {
+        "path": "date"
+      }
+    ]
+  },
+  "sourceResource/creator": {
+    "origins": [
+      {
+        "path": "creator"
+      }
+    ]
+  },
+  "sourceResource/contributor": {
+    "origins": [
+      {
+        "path": "contributor"
+      }
+    ]
+  },
+  "sourceResource/format": {
+    "origins": [
+      {
+        "path": "form"
+      }
+    ]
+  },
+  "sourceResource/collection/title": {
+    "origins": [
+      {
+        "path": "collection_title"
+      }
+    ]
+  },
+  "sourceResource/collection/description": {
+    "origins": [
+      {
+        "path": "collection_description"
+      }
+    ]
+  },
+  "sourceResource/type": {
+    "origins": [
+      {
+        "path": "type"
+      }
+    ]
+  },
+  "identifier": {
+    "origins": [
+      {
+        "path": "identifier"
+      }
+    ]
+  }
+}
