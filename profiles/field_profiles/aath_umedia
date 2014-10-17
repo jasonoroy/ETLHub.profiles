@@ -14,7 +14,7 @@
   "isShownAt": {
     "origins": [
       {
-        "path": "purl"
+        "path": "identifier"
       }
     ]
   },
@@ -28,7 +28,7 @@
   "record_hash": {
     "origins": [
       {
-        "path": "purl"
+        "path": "identifier"
       }
     ],
     "processors": [
@@ -47,10 +47,7 @@
   "dataProvider": {
     "origins": [
       {
-        "value": {
-          "@id": "http://dp.la/api/contributor/umn",
-          "name": "University of Minnesota Libraries"
-        }
+        "value": "University of Minnesota Libraries"
       }
     ]
   },
@@ -113,19 +110,13 @@
     ],
     "processors": [
       {
+        "process": "flatten"
+      },
+      {
         "process": "split",
         "args": [
           "; "
         ]
-      },
-      {
-        "process": "flatten"
-      },
-      {
-        "process": "unique"
-      },
-      {
-        "process": "strip"
       },
       {
         "process": "gsub",
@@ -135,11 +126,19 @@
         }
       },
       {
-        "process": "gsub",
-        "args": {
-          "pattern": ";",
-          "replacement": ""
-        }
+        "process": "split",
+        "args": [
+          "--"
+        ]
+      },
+      {
+        "process": "unique"
+      },
+      {
+        "process": "sort"
+      },
+      {
+        "process": "strip"
       },
       {
         "process": "gsub",
@@ -147,6 +146,9 @@
           "pattern": "\"",
           "replacement": ""
         }
+      },
+      {
+        "process": "flatten"
       },
       {
         "process": "apply_label",
@@ -158,6 +160,13 @@
     "origins": [
       {
         "path": "date_start"
+      }
+    ]
+  },
+  "sourceResource/description": {
+    "origins": [
+      {
+        "path": "note"
       }
     ]
   },
@@ -201,12 +210,14 @@
       {
         "path": "collection_title"
       }
-    ]
-  },
-  "sourceResource/collection/description": {
-    "origins": [
+    ],
+    "processors": [
       {
-        "path": "collection_description"
+        "process": "gsub",
+        "args": {
+          "pattern": "Givens Collection of African American Literature.*",
+          "replacement": "Givens Collection of African American Literature"
+        }
       }
     ]
   },
@@ -215,12 +226,133 @@
       {
         "path": "type"
       }
+    ],
+    "processors": [
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "unique"
+      },
+      {
+        "process": "sort"
+      },
+      {
+        "process": "downcase"
+      },
+      {
+        "process": "join",
+        "args": " "
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "[[:punct:]]",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "enrichment": "dc_text_type_replacements"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "enrichment": "dc_image_type_replacements"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "enrichment": "dc_sound_type_replacements"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "enrichment": "dc_video_type_replacements"
+        }
+      }
     ]
   },
   "identifier": {
     "origins": [
       {
         "path": "identifier"
+      }
+    ]
+  },
+  "matcher": {
+    "origins": [
+      {
+        "path": "collection_title"
+      },
+      {
+        "path": "title"
+      },
+      {
+        "path": "subject"
+      },
+      {
+        "path": "note"
+      }
+    ],
+    "processors": [
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          "  "
+        ]
+      },
+      {
+        "process": "downcase"
+      },
+      {
+        "process": "match_first",
+        "args": {
+          "enrichment": "aath_terms"
+        }
+      }
+    ],
+    "record_filters": [
+      {
+        "run": "after_processors",
+        "reject_unless": "has_value?"
+      }
+    ]
+  },
+  "matcherOriginal": {
+    "origins": [
+      {
+        "path": "collection_title"
+      },
+      {
+        "path": "title"
+      },
+      {
+        "path": "subject"
+      },
+      {
+        "path": "note"
+      }
+    ],
+    "processors": [
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          "  "
+        ]
+      },
+      {
+        "process": "downcase"
       }
     ]
   }
