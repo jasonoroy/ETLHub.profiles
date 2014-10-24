@@ -36,9 +36,6 @@
     "origins": [
       {
         "path": "header/identifier"
-      },
-      {
-        "path": "metadata/dc/publisher"
       }
     ],
     "processors": [
@@ -70,6 +67,13 @@
       }
     ]
   },
+  "identifier": {
+    "origins": [
+      {
+        "path": "header/identifier"
+      }
+    ]
+  },
   "sourceResource/title": {
     "origins": [
       {
@@ -96,6 +100,25 @@
       }
     ]
   },
+  "sourceResource/rights": {
+    "origins": [
+      {
+        "path": "metadata/dc/rights"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s+\\s+",
+          "replacement": " "
+        }
+      }
+    ]
+  },
   "sourceResource/spatial": {
     "origins": [
       {
@@ -103,6 +126,13 @@
       }
     ],
     "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "unknown",
+          "replacement": ""
+        }
+      },
       {
         "process": "geonames_postal",
         "args": {
@@ -155,6 +185,9 @@
           "pattern": "\"",
           "replacement": ""
         }
+      },
+      {
+        "process": "flatten"
       },
       {
         "process": "apply_label",
@@ -318,25 +351,6 @@
       }
     ]
   },
-  "sourceResource/rights": {
-    "origins": [
-      {
-        "path": "metadata/dc/rights"
-      }
-    ],
-    "processors": [
-      {
-        "process": "strip"
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "\\s+\\s+",
-          "replacement": " "
-        }
-      }
-    ]
-  },
   "sourceResource/relation": {
     "origins": [
       {
@@ -434,13 +448,6 @@
         "args": {
           "enrichment": "dc_video_type_replacements"
         }
-      }
-    ]
-  },
-  "identifier": {
-    "origins": [
-      {
-        "path": "header/identifier"
       }
     ]
   }
