@@ -1,0 +1,108 @@
+{
+  "record_hash": {
+    "origins": [
+      {
+        "path": "header/identifier[last()]||header/identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "to_sha1_hex"
+      }
+    ]
+  },
+  "object": {
+    "origins": [
+      {
+        "path": "header/identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "oai:reflections.mndigital.org:",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "/",
+          "replacement": "&CISOPTR="
+        }
+      },
+      {
+        "process": "affix",
+        "args": {
+          "prefix": "http://reflections.mndigital.org/cgi-bin/thumbnail.exe?CISOROOT=/"
+        }
+      }
+    ]
+  },
+  "sourceResource/collection/title": {
+    "path_keys": [
+      {
+        "token": "$setSpec1",
+        "path": "header/setSpec[first()]||header/setSpec"
+      },
+      {
+        "token": "$setSpec2",
+        "path": "header/setSpec[last()]||header/setSpec"
+      }
+    ],
+    "origins": [
+      {
+        "path": "enrichments/listSets/records/$setSpec1/setName"
+      },
+      {
+        "path": "enrichments/listSets/records/$setSpec2/setName"
+      }
+    ],
+    "processors": [
+      {
+        "process": "unique"
+      },
+      {
+        "process": "join",
+        "args": "; "
+      }
+    ]
+  },
+  "sourceResource/collection/description": {
+    "path_keys": [
+      {
+        "token": "$setSpec1",
+        "path": "header/setSpec[first()]||header/setSpec"
+      },
+      {
+        "token": "$setSpec2",
+        "path": "header/setSpec[last()]||header/setSpec"
+      }
+    ],
+    "origins": [
+      {
+        "path": "enrichments/listSets/records/$setSpec1/setDescription/dc/description"
+      },
+      {
+        "path": "enrichments/listSets/records/$setSpec2/setDescription/dc/description"
+      }
+    ],
+    "processors": [
+      {
+        "process": "unique"
+      },
+      {
+        "process": "join",
+        "args": "; "
+      }
+    ]
+  },
+  "sourceResource/language": {
+    "origins": [
+      {
+        "path": "metadata/dc/language"
+      }
+    ]
+  }
+}
