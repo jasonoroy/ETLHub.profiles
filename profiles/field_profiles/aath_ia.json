@@ -1,8 +1,63 @@
 {
+  "sourceResource/language": {
+    "origins": [
+      {
+        "path": "title"
+      },
+      {
+        "path": "description"
+      }
+    ],
+    "processors": [
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      },
+      {
+        "process": "text_to_language_code"
+      },
+      {
+        "process": "match_first",
+        "args": {
+          "pattern": "en"
+        }
+      }
+    ],
+    "record_filters": [
+      {
+        "run": "after_processors",
+        "reject_unless": "has_value?"
+      }
+    ]
+  },
   "sourceResource/rights": {
     "origins": [
       {
         "path": "licenseurl"
+      }
+    ]
+  },
+  "object": {
+    "path_keys": [
+      {
+        "token": "$identifier",
+        "path": "identifier"
+      }
+    ],
+    "origins": [
+      {
+        "url": "https://archive.org/details/$identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "attribute_value_at_path",
+        "args": {
+          "path": "//meta[@property='og:image']",
+          "attribute": "content"
+        }
       }
     ]
   },
@@ -161,6 +216,23 @@
     "processors": [
       {
         "process": "ucfirst"
+      },
+      {
+        "process": "unique"
+      },
+      {
+        "process": "join",
+        "args": [
+          "; "
+        ]
+      },
+      {
+        "comment": "replacing to comply with: http://internetarchive.wordpress.com/2010/05/12/community-a-new-name-for-open-source-collections/",
+        "process": "gsub",
+        "args": {
+          "pattern": "opensource_audio",
+          "replacement": "Community Audio"
+        }
       }
     ]
   },
