@@ -156,6 +156,11 @@
       {
         "path": "description"
       }
+    ],
+    "processors": [
+      {
+        "process": "strip_html"
+      }
     ]
   },
   "sourceResource/date/begin": {
