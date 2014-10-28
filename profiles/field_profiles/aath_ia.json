@@ -233,6 +233,209 @@
           "pattern": "opensource_audio",
           "replacement": "Community Audio"
         }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "animationandcartoons",
+          "replacement": "Animation & Cartoons"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "artsandmusicvideos",
+          "replacement": "Arts & Music"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "opensource_movies",
+          "replacement": "Community Video"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "computersandtechvideos",
+          "replacement": "Computers & Technology"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "culturalandacademicfilms",
+          "replacement": "Cultural & Academic Films"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "moviesandfilms",
+          "replacement": "Movies"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "animationandcartoons",
+          "replacement": "Animation & Cartoons"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "ephemera",
+          "replacement": "Ephemeral Films"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "moviesandfilms",
+          "replacement": "Animation & Cartoons"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "newsandpublicaffairs",
+          "replacement": "News & Public Affairss"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "prelinger",
+          "replacement": "Prelinger Archives"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "spiritualityandreligion",
+          "replacement": "Spirituality & Religion"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "sports",
+          "replacement": "Sports Videos"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "television",
+          "replacement": "Television"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "gamevideos",
+          "replacement": "Videogame Videos"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "vlogs",
+          "replacement": "vlogs"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "youth_media",
+          "replacement": "Youth Media"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "audio",
+          "replacement": "Audio"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "audio_bookspoetry",
+          "replacement": "Audio Books & Poetry"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "audio_tech",
+          "replacement": "Computers & Technology"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "GratefulDead",
+          "replacement": "Grateful Dead"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "etree",
+          "replacement": "Live Music Archive"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "audio_music",
+          "replacement": "Music, Arts & Culture"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "netlabels",
+          "replacement": "Netlabels"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "audio_news",
+          "replacement": "News & Public Affairs"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "audio_foreign",
+          "replacement": "Non-English Audio"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "audio_podcast",
+          "replacement": "Podcasts"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "radioprograms",
+          "replacement": "Radio Programs"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "audio_religion",
+          "replacement": "Spirituality & Religion"
+        }
       }
     ]
   },
@@ -281,7 +484,7 @@
       {
         "process": "join",
         "args": [
-          "  "
+          " "
         ]
       },
       {
