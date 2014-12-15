@@ -28,7 +28,15 @@
   "sourceResource/extent": {
     "origins": [
       {
-        "path": "metadata/dc/format[first()]||metadata/dc/format"
+        "path": "metadata/dc/extent"
+      }
+    ],
+    "processors": [
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
       }
     ]
   },
@@ -62,7 +70,7 @@
       {
         "value": {
           "@id": "http://dp.la/api/contributor/umn",
-          "name": "University of Minnesota Libraries"
+          "name": "Minnesota Digital Library"
         }
       }
     ]
@@ -81,6 +89,9 @@
       }
     ],
     "processors": [
+      {
+        "process": "strip_html"
+      },
       {
         "process": "strip"
       },
@@ -107,6 +118,12 @@
       }
     ],
     "processors": [
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      },
       {
         "process": "strip"
       },
@@ -171,6 +188,15 @@
         ]
       },
       {
+        "process": "flatten"
+      },
+      {
+        "process": "split",
+        "args": [
+          "/"
+        ]
+      },
+      {
         "process": "unique"
       },
       {
@@ -226,6 +252,23 @@
       },
       {
         "process": "first"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "[A-Za-z]",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "[[:punct:]]",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "strip"
       }
     ]
   },
@@ -260,6 +303,23 @@
       },
       {
         "process": "first"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "[A-Za-z]",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "[[:punct:]]",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "strip"
       }
     ]
   },
@@ -316,6 +376,9 @@
           "pattern": "\\s+\\s+",
           "replacement": " "
         }
+      },
+      {
+        "process": "strip_html"
       }
     ]
   },
