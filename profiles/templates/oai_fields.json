@@ -4,6 +4,15 @@
       {
         "path": "header/status"
       }
+    ],
+    "record_filters": [
+      {
+        "run": "before_processors",
+        "reject_if": "matches",
+        "args": {
+          "pattern": "deleted"
+        }
+      }
     ]
   },
   "sourceResource/language": {
@@ -302,7 +311,7 @@
         ]
       },
       {
-        "process": "first"
+        "process": "last"
       },
       {
         "process": "gsub",
@@ -404,13 +413,6 @@
       },
       {
         "process": "unique"
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "[[:punct:]]",
-          "replacement": ""
-        }
       }
     ]
   },
