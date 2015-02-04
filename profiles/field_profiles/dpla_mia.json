@@ -5,11 +5,13 @@
         "path": "image"
       }
     ],
-    "record_rejectors": [
+    "record_filters": [
       {
         "run": "after_processors",
         "reject_if": "matches",
-        "args": "invalid"
+        "args": {
+          "pattern": "invalid"
+        }
       }
     ]
   },
@@ -23,7 +25,9 @@
       {
         "run": "before_processors",
         "reject_if": "matches",
-        "args": "1"
+        "args": {
+          "pattern": "1"
+        }
       }
     ]
   },
