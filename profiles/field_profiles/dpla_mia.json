@@ -26,7 +26,7 @@
         "run": "before_processors",
         "reject_if": "matches",
         "args": {
-          "pattern": "1"
+          "pattern": "0"
         }
       }
     ]
