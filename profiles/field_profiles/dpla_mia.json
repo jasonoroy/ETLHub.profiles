@@ -108,7 +108,18 @@
   "sourceResource/rights": {
     "origins": [
       {
+        "path": "image_copyright"
+      },
+      {
         "value": "http://new.artsmia.org/visit/policies-guidelines/#image_access_and_use"
+      }
+    ],
+    "processors": [
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
       }
     ]
   },
