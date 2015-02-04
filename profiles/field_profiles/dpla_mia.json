@@ -1,0 +1,178 @@
+{
+  "HIDE_FIELD_IMAGE_INVALID": {
+    "origins": [
+      {
+        "path": "image"
+      }
+    ],
+    "record_rejectors": [
+      {
+        "run": "after_processors",
+        "reject_if": "matches",
+        "args": "invalid"
+      }
+    ]
+  },
+  "HIDE_FIELD_IMAGE_RESTRICTED": {
+    "origins": [
+      {
+        "path": "restricted"
+      }
+    ],
+    "record_filters": [
+      {
+        "run": "before_processors",
+        "reject_if": "matches",
+        "args": "1"
+      }
+    ]
+  },
+  "dataProvider": {
+    "origins": [
+      {
+        "value": "Minneapolis Institute of Arts"
+      }
+    ]
+  },
+  "provider": {
+    "origins": [
+      {
+        "value": "Minnesota Digital Library"
+      }
+    ]
+  },
+  "object": {
+    "origins": [
+      {
+        "path": "id"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "http://api.artsmia.org/objects/",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "affix",
+        "args": {
+          "prefix": "http://api.artsmia.org/images/"
+        }
+      },
+      {
+        "process": "affix",
+        "args": {
+          "suffix": "/medium.jpg"
+        }
+      }
+    ]
+  },
+  "isShownAt": {
+    "origins": [
+      {
+        "path": "id"
+      }
+    ]
+  },
+  "record_hash": {
+    "origins": [
+      {
+        "path": "id"
+      }
+    ],
+    "processors": [
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      },
+      {
+        "process": "to_sha1_hex"
+      }
+    ]
+  },
+  "sourceResource/identifier": {
+    "origins": [
+      {
+        "path": "id"
+      }
+    ]
+  },
+  "sourceResource/rights": {
+    "origins": [
+      {
+        "value": "http://new.artsmia.org/visit/policies-guidelines/#image_access_and_use"
+      }
+    ]
+  },
+  "sourceResource/title": {
+    "origins": [
+      {
+        "path": "title"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip_html"
+      },
+      {
+        "process": "strip"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s+\\s+",
+          "replacement": " "
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\;$",
+          "replacement": ""
+        }
+      }
+    ]
+  },
+  "sourceResource/description": {
+    "origins": [
+      {
+        "path": "description"
+      },
+      {
+        "path": "creditline"
+      }
+    ],
+    "processors": [
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      },
+      {
+        "process": "strip"
+      },
+      {
+        "process": "strip_html"
+      }
+    ]
+  },
+  "sourceResource/format": {
+    "origins": [
+      {
+        "path": "medium"
+      }
+    ]
+  },
+  "sourceResource/extent": {
+    "origins": [
+      {
+        "path": "dimension"
+      }
+    ]
+  }
+}
