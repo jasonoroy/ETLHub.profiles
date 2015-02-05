@@ -1,5 +1,16 @@
 {
-  "local_storage_subdir": "aath",
+  "storage_destinations": {
+    "local_directory": {
+      "subdirs": [
+        "records",
+        "aath_carli"
+      ],
+      "package_subdirs": [
+        "records",
+        "packaged"
+      ]
+    }
+  },
   "validator": {
     "base_url": "http://hub-services.lib.umn.edu/api/v1/validate",
     "api_key": "<<<<key here>>>>",
@@ -22,12 +33,52 @@
         "origin_path": "OAI_PMH/ListSets/set",
         "key": "listSets",
         "pivot_on_path": "setSpec"
+      },
+      {
+        "endpoint": "http://hub-client.lib.umn.edu/lookups/3.json",
+        "cache": false,
+        "key": "dc_text_type_replacements"
+      },
+      {
+        "endpoint": "http://hub-client.lib.umn.edu/lookups/2.json",
+        "cache": false,
+        "key": "dc_image_type_replacements"
+      },
+      {
+        "endpoint": "http://hub-client.lib.umn.edu/lookups/6.json",
+        "cache": false,
+        "key": "dc_sound_type_replacements"
+      },
+      {
+        "endpoint": "http://hub-client.lib.umn.edu/lookups/7.json",
+        "cache": false,
+        "key": "dc_video_type_replacements"
+      },
+      {
+        "endpoint": "http://hub-client.lib.umn.edu/lookups/4.json",
+        "cache": false,
+        "key": "geonames_minnesota_defaults"
+      },
+      {
+        "endpoint": "http://hub-client.lib.umn.edu/lookups/1.json",
+        "cache": false,
+        "key": "aath_terms"
       }
     ]
   },
   "transformer": {
-    "base_url": "http://hub-services.lib.umn.edu/api/v1/transform",
+    "base_url": "http://services.libsystems.org",
     "api_key": "<<<<key here>>>>",
+    "field_templates": [
+      {
+        "name": "OAI",
+        "url": "http://hub-client.lib.umn.edu/lookups/10.json"
+      },
+      {
+        "name": "AATH Record Filter",
+        "url": "http://hub-client.lib.umn.edu/lookups/11.json"
+      }
+    ],
     "@context": "http://dp.la/api/items/context"
   }
 }

@@ -1,0 +1,38 @@
+{
+  "object": {
+    "origins": [
+      {
+        "path": "header/identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "oai:www.idaillinois.org:",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "/",
+          "replacement": "&CISOPTR="
+        }
+      },
+      {
+        "process": "affix",
+        "args": {
+          "prefix": "http://www.idaillinois.org/cgi-bin/thumbnail.exe?CISOROOT=/"
+        }
+      }
+    ]
+  },
+  "intermediateProvider": {
+    "origins": [
+      {
+        "value": "Illinois Digital Archives"
+      }
+    ]
+  }
+}

@@ -1,0 +1,321 @@
+{
+  "sourceResource/language": {
+    "origins": [
+      {
+        "path": "language"
+      }
+    ],
+    "processors": [
+      {
+        "process": "encode_language_by_name"
+      }
+    ]
+  },
+  "isShownAt": {
+    "origins": [
+      {
+        "path": "purl"
+      }
+    ]
+  },
+  "sourceResource/extent": {
+    "origins": [
+      {
+        "path": "extent"
+      }
+    ]
+  },
+  "purl": {
+    "origins": [
+      {
+        "path": "purl"
+      }
+    ]
+  },
+  "record_hash": {
+    "origins": [
+      {
+        "path": "identifier"
+      },
+      {
+        "value": "University of Minnesota Media Archive"
+      }
+    ],
+    "processors": [
+      {
+        "process": "join",
+        "args": " "
+      },
+      {
+        "process": "to_sha1_hex"
+      }
+    ]
+  },
+  "object": {
+    "origins": [
+      {
+        "path": "object"
+      }
+    ]
+  },
+  "dataProvider": {
+    "origins": [
+      {
+        "value": "University of Minnesota Libraries"
+      }
+    ]
+  },
+  "provider": {
+    "origins": [
+      {
+        "value": "Minnesota Digital Library"
+      }
+    ]
+  },
+  "sourceResource/title": {
+    "origins": [
+      {
+        "path": "title"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s+\\s+",
+          "replacement": " "
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\;$",
+          "replacement": ""
+        }
+      }
+    ]
+  },
+  "sourceResource/spatial": {
+    "origins": [
+      {
+        "path": "coverage"
+      }
+    ],
+    "processors": [
+      {
+        "process": "geonames_postal",
+        "args": {
+          "username": "umntestuser"
+        }
+      }
+    ]
+  },
+  "sourceResource/subject": {
+    "origins": [
+      {
+        "path": "subject"
+      }
+    ],
+    "processors": [
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "split",
+        "args": [
+          "; "
+        ]
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s--\\s",
+          "replacement": "--"
+        }
+      },
+      {
+        "process": "split",
+        "args": [
+          "--"
+        ]
+      },
+      {
+        "process": "unique"
+      },
+      {
+        "process": "sort"
+      },
+      {
+        "process": "strip"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\"",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "apply_label",
+        "args": "name"
+      }
+    ]
+  },
+  "sourceResource/date/begin": {
+    "origins": [
+      {
+        "path": "date_start"
+      }
+    ]
+  },
+  "sourceResource/description": {
+    "origins": [
+      {
+        "path": "note"
+      },
+      {
+        "path": "provenance"
+      }
+    ],
+    "processors": [
+      {
+        "process": "join",
+        "args": " "
+      }
+    ]
+  },
+  "sourceResource/date/end": {
+    "origins": [
+      {
+        "path": "date_end"
+      }
+    ]
+  },
+  "sourceResource/date/displayDate": {
+    "origins": [
+      {
+        "path": "date"
+      }
+    ]
+  },
+  "sourceResource/creator": {
+    "origins": [
+      {
+        "path": "creator"
+      }
+    ]
+  },
+  "sourceResource/contributor": {
+    "origins": [
+      {
+        "path": "contributor"
+      }
+    ]
+  },
+  "sourceResource/format": {
+    "origins": [
+      {
+        "path": "form"
+      }
+    ]
+  },
+  "sourceResource/collection/title": {
+    "origins": [
+      {
+        "path": "collection_title"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "Givens Collection of African American Literature.*",
+          "replacement": "Givens Collection of African American Literature"
+        }
+      }
+    ]
+  },
+  "sourceResource/collection/description": {
+    "origins": [
+      {
+        "path": "collection_description"
+      }
+    ]
+  },
+  "sourceResource/type": {
+    "origins": [
+      {
+        "path": "type"
+      }
+    ],
+    "processors": [
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "unique"
+      },
+      {
+        "process": "sort"
+      },
+      {
+        "process": "downcase"
+      },
+      {
+        "process": "join",
+        "args": " "
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "[[:punct:]]",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "enrichment": "dc_text_type_replacements"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "enrichment": "dc_image_type_replacements"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "enrichment": "dc_sound_type_replacements"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "enrichment": "dc_video_type_replacements"
+        }
+      }
+    ]
+  },
+  "identifier": {
+    "origins": [
+      {
+        "path": "identifier"
+      }
+    ]
+  },
+  "sourceResource/rights": {
+    "origins": [
+      {
+        "path": "access_condition"
+      }
+    ]
+  }
+}

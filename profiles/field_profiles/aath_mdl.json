@@ -1,0 +1,76 @@
+{
+  "object": {
+    "origins": [
+      {
+        "path": "header/identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "oai:reflections.mndigital.org:",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "/",
+          "replacement": "&CISOPTR="
+        }
+      },
+      {
+        "process": "affix",
+        "args": {
+          "prefix": "http://reflections.mndigital.org/cgi-bin/thumbnail.exe?CISOROOT=/"
+        }
+      }
+    ]
+  },
+  "intermediateProvider": {
+    "origins": [
+      {
+        "value": "Minnesota Digital Library"
+      }
+    ]
+  },
+  "provider": {
+    "origins": [
+      {
+        "value": {
+          "@id": "http://dp.la/api/contributor/mdl",
+          "name": "Minnesota Digital Library"
+        }
+      }
+    ]
+  },
+  "sourceResource/format": {
+    "origins": [
+      {
+        "path": "metadata/dc/format[last()]||metadata/dc/format"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": ";",
+          "replacement": ""
+        }
+      }
+    ]
+  }
+}

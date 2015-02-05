@@ -1,4 +1,80 @@
 {
+  "rights": {
+    "origins": [
+      {
+        "value": "http://minnesota.publicradio.org/about/site/terms/"
+      }
+    ]
+  },
+  "format": {
+    "origins": [
+      {
+        "value": " news bulletin"
+      }
+    ]
+  },
+  "lcsh_subject": {
+    "origins": [
+      {
+        "path": "tags"
+      }
+    ],
+    "processors": [
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "split",
+        "args": [
+          "; "
+        ]
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s--\\s",
+          "replacement": "--"
+        }
+      },
+      {
+        "process": "split",
+        "args": [
+          "--"
+        ]
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "split",
+        "args": [
+          "/"
+        ]
+      },
+      {
+        "process": "unique"
+      },
+      {
+        "process": "sort"
+      },
+      {
+        "process": "strip"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\"",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "lcsh_enrich"
+      }
+    ]
+  },
   "identifier": {
     "origins": [
       {
@@ -23,7 +99,7 @@
   "dataProvider": {
     "origins": [
       {
-        "path": "origin[last()]"
+        "value": "Minnesota Public Radio"
       }
     ]
   },
@@ -37,10 +113,7 @@
   "provider": {
     "origins": [
       {
-        "value": {
-          "@id": "http://dp.la/api/contributor/umn",
-          "name": "University of Minnesota Libraries"
-        }
+        "value": "Minnesota Digital Library"
       }
     ]
   },
@@ -61,7 +134,7 @@
         ]
       },
       {
-        "process": "to_md5"
+        "process": "to_sha1_hex"
       }
     ]
   },

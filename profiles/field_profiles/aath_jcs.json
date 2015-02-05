@@ -1,0 +1,38 @@
+{
+  "object": {
+    "origins": [
+      {
+        "path": "header/identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "/",
+          "replacement": "/id/"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "oai:cdm15170.contentdm.oclc.org:",
+          "replacement": "utils/getthumbnail/collection/"
+        }
+      },
+      {
+        "process": "affix",
+        "args": {
+          "prefix": "http://cdm15170.contentdm.oclc.org/"
+        }
+      }
+    ]
+  },
+  "dataProvider": {
+    "origins": [
+      {
+        "value": "Johnson C. Smith University"
+      }
+    ]
+  }
+}

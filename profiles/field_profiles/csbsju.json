@@ -1,90 +1,22 @@
 {
-  "sourceResource/spatial": {
+  "REMOVE-HMMLMicrofi": {
     "origins": [
       {
-        "path": "metadata/dc/coverage"
+        "path": "header/setSpec"
       }
     ],
     "processors": [
       {
-        "process": "geonames_postal",
+        "process": "nullify"
+      }
+    ],
+    "record_filters": [
+      {
+        "run": "before_processors",
+        "reject_if": "matches",
         "args": {
-          "username": "umntestuser",
-          "defaults": [
-            {
-              "matches": [
-                [
-                  "Minneapolis",
-                  "Downtown",
-                  "Hennepin",
-                  "Minnesota",
-                  "United States"
-                ],
-                [
-                  "Minneapolis",
-                  "Hennepin",
-                  "Minnesota",
-                  "United States"
-                ],
-                [
-                  "Minneapolis",
-                  "Minnesota",
-                  "United States"
-                ],
-                [
-                  "Minneapolis",
-                  "Minnesota"
-                ],
-                [
-                  "Minneapolis"
-                ]
-              ],
-              "returns": {
-                "county": "Hennepin County",
-                "name": "Minneapolis",
-                "state": "Minnesota",
-                "coordinates": [
-                  "44.9871, -93.2737"
-                ],
-                "country": "United States"
-              }
-            },
-            {
-              "matches": [
-                [
-                  "Alexandria",
-                  "Douglas",
-                  "Minnesota",
-                  "United States",
-                  "Mary Lake"
-                ]
-              ],
-              "returns": {
-                "county": "Douglas",
-                "name": "Mary Lake, Alexandria",
-                "state": "Minnesota",
-                "coordinates": [
-                  "45.827483,-95.473436"
-                ],
-                "country": "United States"
-              }
-            }
-          ]
+          "pattern": "HMMLMicrofi"
         }
-      }
-    ]
-  },
-  "sourceResource/contributor": {
-    "origins": [
-      {
-        "path": "metadata/dc/contributor"
-      }
-    ]
-  },
-  "sourceResource/publisher": {
-    "origins": [
-      {
-        "path": "metadata/dc/publisher"
       }
     ]
   },
@@ -96,143 +28,21 @@
     ],
     "processors": [
       {
+        "process": "suppress_field_by_record_path",
+        "args": {
+          "if_field_at_path": "header/setSpec",
+          "equals": "SJPottery"
+        }
+      },
+      {
+        "process": "suppress_field_by_record_path",
+        "args": {
+          "if_field_at_path": "header/setSpec",
+          "equals": "SBM"
+        }
+      },
+      {
         "process": "strip"
-      },
-      {
-        "process": "flatten"
-      },
-      {
-        "process": "join",
-        "args": [
-          ""
-        ]
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": ";",
-          "replacement": ""
-        }
-      }
-    ]
-  },
-  "sourceResource/language": {
-    "origins": [
-      {
-        "path": "metadata/dc/language"
-      }
-    ]
-  },
-  "sourceResource/date/begin": {
-    "origins": [
-      {
-        "path": "metadata/dc/date"
-      }
-    ],
-    "processors": [
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "\\?",
-          "replacement": ""
-        }
-      },
-      {
-        "process": "split",
-        "args": [
-          " - "
-        ]
-      },
-      {
-        "process": "first"
-      },
-      {
-        "process": "split",
-        "args": [
-          "-"
-        ]
-      },
-      {
-        "process": "first"
-      }
-    ]
-  },
-  "sourceResource/date/end": {
-    "origins": [
-      {
-        "path": "metadata/dc/date"
-      }
-    ],
-    "processors": [
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "\\?",
-          "replacement": ""
-        }
-      },
-      {
-        "process": "split",
-        "args": [
-          " - "
-        ]
-      },
-      {
-        "process": "last"
-      },
-      {
-        "process": "split",
-        "args": [
-          "-"
-        ]
-      },
-      {
-        "process": "first"
-      }
-    ]
-  },
-  "sourceResource/date/displayDate": {
-    "origins": [
-      {
-        "path": "metadata/dc/date"
-      }
-    ]
-  },
-  "sourceResource/type": {
-    "origins": [
-      {
-        "path": "metadata/dc/type"
-      }
-    ],
-    "processors": [
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "Still Image|Still Image;|Cartographic|Cartographic;|image;",
-          "replacement": "image"
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "Text",
-          "replacement": "text"
-        }
-      }
-    ]
-  },
-  "sourceResource/subject": {
-    "origins": [
-      {
-        "path": "metadata/dc/subject"
-      }
-    ],
-    "processors": [
-      {
-        "process": "split",
-        "args": [
-          "; "
-        ]
       },
       {
         "process": "flatten"
@@ -241,63 +51,18 @@
         "process": "unique"
       },
       {
-        "process": "strip"
-      },
-      {
         "process": "gsub",
         "args": {
-          "pattern": "\\s--\\s",
-          "replacement": "--"
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": ";",
+          "pattern": "[[:punct:]]",
           "replacement": ""
         }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "\"",
-          "replacement": ""
-        }
-      },
-      {
-        "process": "apply_label",
-        "args": "name"
-      }
-    ]
-  },
-  "status": {
-    "origins": [
-      {
-        "path": "header/status"
-      }
-    ],
-    "record_rejectors": [
-      {
-        "run": "before_processors",
-        "reject_if": "matches",
-        "args": "deleted"
-      }
-    ]
-  },
-  "isShownAt": {
-    "origins": [
-      {
-        "path": "metadata/dc/identifier[last()]||metadata/dc/identifier"
       }
     ]
   },
   "provider": {
     "origins": [
       {
-        "value": {
-          "@id": "http://dp.la/api/contributor/umn",
-          "name": "University of Minnesota"
-        }
+        "value": "Minnesota Digital Library"
       }
     ]
   },
@@ -308,96 +73,31 @@
       }
     ]
   },
-  "identifier": {
-    "origins": [
+  "sourceResource/collection/title": {
+    "path_keys": [
       {
-        "path": "header/identifier"
+        "token": "$setSpec",
+        "path": "header/setSpec"
       }
-    ]
-  },
-  "title": {
+    ],
     "origins": [
       {
-        "path": "metadata/dc/title"
+        "path": "enrichments/listSets/records/$setSpec/setName"
       }
     ],
     "processors": [
       {
-        "process": "strip"
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "\\s+\\s+",
-          "replacement": " "
-        }
-      },
-      {
         "process": "gsub",
         "args": {
           "pattern": "CSB",
-          "replacement": "College of Saint Benedict "
+          "replacement": "College of Saint Benedict"
         }
       },
       {
         "process": "gsub",
         "args": {
           "pattern": "SJU",
-          "replacement": "Saint John’s University "
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "HMML",
-          "replacement": "Hill Monastic Manuscript Library"
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "\\;$",
-          "replacement": ""
-        }
-      }
-    ]
-  },
-  "sourceResource/title": {
-    "origins": [
-      {
-        "path": "metadata/dc/title"
-      }
-    ],
-    "processors": [
-      {
-        "process": "strip"
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "\\s+\\s+",
-          "replacement": " "
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "\\;$",
-          "replacement": ""
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "CSB",
-          "replacement": "College of Saint Benedict "
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "SJU",
-          "replacement": "Saint John’s University "
+          "replacement": "Saint John’s University"
         }
       },
       {
@@ -409,27 +109,23 @@
       }
     ]
   },
-  "sourceResource/rights": {
+  "sourceResource/collection/description": {
+    "path_keys": [
+      {
+        "token": "$setSpec",
+        "path": "header/setSpec"
+      }
+    ],
     "origins": [
       {
-        "path": "metadata/dc/rights"
+        "path": "enrichments/listSets/records/$setSpec/setDescription"
       }
     ],
     "processors": [
       {
-        "process": "join",
-        "args": [
-          "  "
-        ]
-      },
-      {
-        "process": "strip"
-      },
-      {
-        "process": "gsub",
+        "process": "suppress_if",
         "args": {
-          "pattern": "  ",
-          "replacement": " "
+          "pattern": "Collection information undefined"
         }
       }
     ]
@@ -457,15 +153,78 @@
       }
     ]
   },
-  "sourceResource/description": {
+  "sourceResource/title": {
     "origins": [
       {
-        "path": "metadata/dc/description[first()]||metadata/dc/description"
+        "path": "metadata/dc/title"
       }
     ],
     "processors": [
       {
+        "process": "strip_html"
+      },
+      {
         "process": "strip"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s+\\s+",
+          "replacement": " "
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\;$",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "CSB",
+          "replacement": "College of Saint Benedict"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "SJU",
+          "replacement": "Saint John’s University"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "HMML",
+          "replacement": "Hill Monastic Manuscript Library"
+        }
+      }
+    ]
+  },
+  "sourceResource/description": {
+    "origins": [
+      {
+        "path": "metadata/dc/description"
+      }
+    ],
+    "processors": [
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      },
+      {
+        "process": "strip"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s+\\s+",
+          "replacement": " "
+        }
       },
       {
         "process": "strip_html"
@@ -473,22 +232,15 @@
       {
         "process": "gsub",
         "args": {
-          "pattern": "  ",
-          "replacement": " "
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
           "pattern": "CSB",
-          "replacement": "College of Saint Benedict "
+          "replacement": "College of Saint Benedict"
         }
       },
       {
         "process": "gsub",
         "args": {
           "pattern": "SJU",
-          "replacement": "Saint John’s University "
+          "replacement": "Saint John’s University"
         }
       },
       {
@@ -497,118 +249,6 @@
           "pattern": "HMML",
           "replacement": "Hill Monastic Manuscript Library"
         }
-      }
-    ]
-  },
-  "sourceResource/collection/title": {
-    "path_keys": [
-      {
-        "token": "$setSpec",
-        "path": "header/setSpec"
-      }
-    ],
-    "origins": [
-      {
-        "path": "enrichments/listSets/records/$setSpec/setName"
-      }
-    ],
-    "processors": [
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "CSB",
-          "replacement": "College of Saint Benedict "
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "SJU",
-          "replacement": "Saint John’s University "
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "HMML",
-          "replacement": "Hill Monastic Manuscript Library"
-        }
-      }
-    ]
-  },
-  "sourceResource/collection/description": {
-    "path_keys": [
-      {
-        "token": "$setSpec",
-        "path": "header/setSpec"
-      }
-    ],
-    "origins": [
-      {
-        "path": "enrichments/listSets/records/$setSpec/setDescription/dc/description"
-      }
-    ],
-    "processors": [
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "CSB",
-          "replacement": "College of Saint Benedict "
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "SJU",
-          "replacement": "Saint John’s University "
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "HMML",
-          "replacement": "Hill Monastic Manuscript Library"
-        }
-      }
-    ]
-  },
-  "header/setSpec": {
-    "origins": [
-      {
-        "path": "header/setSpec"
-      }
-    ],
-    "processors": [
-      {
-        "process": "nullify"
-      }
-    ],
-    "record_rejectors": [
-      {
-        "run": "before_processors",
-        "reject_if": "matches",
-        "args": "HMMLMicrofi"
-      }
-    ]
-  },
-  "record_hash": {
-    "origins": [
-      {
-        "path": "header/identifier"
-      },
-      {
-        "value": "College of Saint Benedict & Saint John's University"
-      }
-    ],
-    "processors": [
-      {
-        "process": "join",
-        "args": [
-          ""
-        ]
-      },
-      {
-        "process": "to_md5"
       }
     ]
   }

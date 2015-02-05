@@ -1,0 +1,64 @@
+{
+  "object": {
+    "origins": [
+      {
+        "path": "header/identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "/",
+          "replacement": "/id/"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "oai:cdm15138.contentdm.oclc.org:",
+          "replacement": "utils/getthumbnail/collection/"
+        }
+      },
+      {
+        "process": "affix",
+        "args": {
+          "prefix": "http://cdm15138.contentdm.oclc.org/"
+        }
+      }
+    ]
+  },
+  "dataProvider": {
+    "origins": [
+      {
+        "value": "Tennessee State Library and Archives"
+      }
+    ]
+  },
+  "sourceResource/collection/title": {
+    "path_keys": [
+      {
+        "token": "$setSpec",
+        "path": "header/setSpec"
+      }
+    ],
+    "origins": [
+      {
+        "path": "enrichments/listSets/records/$setSpec/setDescription/oclcdc/title"
+      }
+    ]
+  },
+  "sourceResource/collection/description": {
+    "path_keys": [
+      {
+        "token": "$setSpec",
+        "path": "header/setSpec"
+      }
+    ],
+    "origins": [
+      {
+        "path": "enrichments/listSets/records/$setSpec/setDescription/oclcdc/description"
+      }
+    ]
+  }
+}

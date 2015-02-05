@@ -1,0 +1,261 @@
+{
+  "sourceResource/creator": {
+    "origins": [
+      {
+        "path": "sourceResource/creator"
+      }
+    ]
+  },
+  "sourceResource/spatial": {
+    "origins": [
+      {
+        "path": "sourceResource/spatial"
+      }
+    ]
+  },
+  "sourceResource/contributor": {
+    "origins": [
+      {
+        "path": "sourceResource/contributor"
+      }
+    ]
+  },
+  "sourceResource/publisher": {
+    "origins": [
+      {
+        "path": "sourceResource/publisher"
+      }
+    ]
+  },
+  "sourceResource/format": {
+    "origins": [
+      {
+        "path": "sourceResource/format"
+      }
+    ]
+  },
+  "sourceResource/language": {
+    "origins": [
+      {
+        "path": "sourceResource/language"
+      }
+    ]
+  },
+  "sourceResource/date/begin": {
+    "origins": [
+      {
+        "path": "sourceResource/date/begin"
+      }
+    ]
+  },
+  "sourceResource/date/end": {
+    "origins": [
+      {
+        "path": "sourceResource/date/end"
+      }
+    ]
+  },
+  "sourceResource/date/displayDate": {
+    "origins": [
+      {
+        "path": "sourceResource/date/displayDate"
+      }
+    ]
+  },
+  "sourceResource/type": {
+    "origins": [
+      {
+        "path": "sourceResource/type"
+      }
+    ],
+    "processors": [
+      {
+        "process": "join",
+        "args": [
+          "  "
+        ]
+      },
+      {
+        "process": "gsub",
+        "comment": "Image Replacements",
+        "args": "http://hub-client.lib.umn.edu/lookups/2.json"
+      },
+      {
+        "process": "gsub",
+        "comment": "Text Replacements",
+        "args": "http://hub-client.lib.umn.edu/lookups/3.json"
+      }
+    ]
+  },
+  "sourceResource/subject": {
+    "origins": [
+      {
+        "path": "sourceResource/subject"
+      }
+    ],
+    "processors": [
+      {
+        "process": "slice_each",
+        "args": "name"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "split",
+        "args": [
+          "; "
+        ]
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\\s--\\s",
+          "replacement": "--"
+        }
+      },
+      {
+        "process": "split",
+        "args": [
+          "--"
+        ]
+      },
+      {
+        "process": "strip"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\"",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "sort"
+      },
+      {
+        "process": "unique"
+      },
+      {
+        "process": "apply_label",
+        "args": "name"
+      }
+    ]
+  },
+  "isShownAt": {
+    "origins": [
+      {
+        "path": "isShownAt"
+      }
+    ]
+  },
+  "provider": {
+    "origins": [
+      {
+        "path": "provider"
+      }
+    ]
+  },
+  "dataProvider": {
+    "origins": [
+      {
+        "path": "dataProvider"
+      }
+    ],
+    "processors": [
+      {
+        "process": "join",
+        "args": [
+          "  "
+        ]
+      }
+    ]
+  },
+  "intermediateProvider": {
+    "origins": [
+      {
+        "value": "Digital Public Library of America"
+      }
+    ]
+  },
+  "identifier": {
+    "origins": [
+      {
+        "path": "identifier"
+      }
+    ]
+  },
+  "sourceResource/title": {
+    "origins": [
+      {
+        "path": "sourceResource/title"
+      }
+    ]
+  },
+  "sourceResource/rights": {
+    "origins": [
+      {
+        "path": "sourceResource/rights"
+      }
+    ]
+  },
+  "object": {
+    "origins": [
+      {
+        "path": "object"
+      }
+    ],
+    "record_filters": [
+      {
+        "run": "after_processors",
+        "reject_unless": "matches",
+        "args": {
+          "pattern": "http.*"
+        }
+      }
+    ]
+  },
+  "sourceResource/description": {
+    "origins": [
+      {
+        "path": "sourceResource/description"
+      }
+    ]
+  },
+  "sourceResource/collection/title": {
+    "origins": [
+      {
+        "path": "sourceResource/collection/title"
+      }
+    ]
+  },
+  "sourceResource/collection/description": {
+    "origins": [
+      {
+        "path": "sourceResource/collection/description"
+      }
+    ]
+  },
+  "dpla_id": {
+    "origins": [
+      {
+        "path": "id"
+      }
+    ]
+  },
+  "record_hash": {
+    "origins": [
+      {
+        "path": "id"
+      }
+    ],
+    "processors": [
+      {
+        "process": "to_sha1_hex"
+      }
+    ]
+  }
+}

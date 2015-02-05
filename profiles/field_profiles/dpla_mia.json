@@ -83,7 +83,10 @@
   "record_hash": {
     "origins": [
       {
-        "path": "id"
+        "value": "artsmia"
+      },
+      {
+        "path": "accession_number"
       }
     ],
     "processors": [
@@ -101,17 +104,59 @@
   "sourceResource/identifier": {
     "origins": [
       {
-        "path": "id"
+        "path": "accession_number"
       }
     ]
   },
-  "sourceResource/rights": {
+  "sourceResource/date/begin": {
     "origins": [
       {
-        "path": "image_copyright"
+        "path": "dated"
+      }
+    ],
+    "processors": [
+      {
+        "process": "split",
+        "args": [
+          "-"
+        ]
       },
       {
-        "value": "http://new.artsmia.org/visit/policies-guidelines/#image_access_and_use"
+        "process": "first"
+      },
+      {
+        "process": "strip"
+      }
+    ]
+  },
+  "sourceResource/date/end": {
+    "origins": [
+      {
+        "path": "dated"
+      }
+    ],
+    "processors": [
+      {
+        "process": "split",
+        "args": [
+          "-"
+        ]
+      },
+      {
+        "process": "last"
+      },
+      {
+        "process": "strip"
+      }
+    ]
+  },
+  "sourceResource/spatial": {
+    "origins": [
+      {
+        "path": "country"
+      },
+      {
+        "path": "continent"
       }
     ],
     "processors": [
@@ -120,6 +165,26 @@
         "args": [
           " "
         ]
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "unknown",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "geonames_postal",
+        "args": {
+          "enrichment": "geonames_minnesota_defaults"
+        }
+      }
+    ]
+  },
+  "sourceResource/rights": {
+    "origins": [
+      {
+        "value": "http://new.artsmia.org/visit/policies-guidelines/#image_access_and_use"
       }
     ]
   },
@@ -156,9 +221,6 @@
     "origins": [
       {
         "path": "description"
-      },
-      {
-        "path": "creditline"
       }
     ],
     "processors": [

@@ -1,0 +1,50 @@
+{
+  "sourceResource/language": {
+    "origins": [
+      {
+        "path": "metadata/dc/language"
+      }
+    ],
+    "processors": [
+      {
+        "process": "encode_language_by_name"
+      }
+    ]
+  },
+  "object": {
+    "origins": [
+      {
+        "path": "header/identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "/",
+          "replacement": "/id/"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "oai:cdm16313.contentdm.oclc.org:",
+          "replacement": "utils/getthumbnail/collection/"
+        }
+      },
+      {
+        "process": "affix",
+        "args": {
+          "prefix": "http://cdm16313.contentdm.oclc.org/"
+        }
+      }
+    ]
+  },
+  "dataProvider": {
+    "origins": [
+      {
+        "value": "Louisiana Digital Library"
+      }
+    ]
+  }
+}

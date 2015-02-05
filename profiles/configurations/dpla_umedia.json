@@ -3,7 +3,7 @@
     "local_directory": {
       "subdirs": [
         "records",
-        "dpla_csbsju"
+        "dpla_umedia"
       ],
       "package_subdirs": [
         "records",
@@ -20,20 +20,13 @@
     "records": {
       "base_url": "http://hub-services.lib.umn.edu/api/v1/extract",
       "endpoint_type": "simple_get",
-      "origin_path": "OAI_PMH/ListRecords/record",
-      "batch_param_name": "resumptionToken",
-      "batch_param_path": "OAI_PMH/ListRecords/resumptionToken",
+      "endpoint": "http://umedia.lib.umn.edu/api",
       "api_key": "<<<<key here>>>>",
-      "endpoint": "http://cdm.csbsju.edu/oai/oai.php?verb=ListRecords&metadataPrefix=oai_dc",
-      "batch_endpoint": "http://cdm.csbsju.edu/oai/oai.php?verb=ListRecords"
+      "batch_param_name": "start",
+      "origin_path": "records",
+      "batch_size": 200
     },
     "enrichments": [
-      {
-        "endpoint": "http://cdm.csbsju.edu/oai/oai.php?verb=ListSets",
-        "origin_path": "OAI_PMH/ListSets/set",
-        "key": "listSets",
-        "pivot_on_path": "setSpec"
-      },
       {
         "endpoint": "http://hub-client.lib.umn.edu/lookups/3.json",
         "cache": false,
@@ -60,7 +53,7 @@
         "key": "geonames_minnesota_defaults"
       },
       {
-        "endpoint": "http://hub-client.lib.umn.edu/lookups/1.json",
+        "endpoint": "http://hub-client.lib.umn.edu/lookups/13.json",
         "cache": false,
         "key": "aath_terms"
       }
@@ -69,12 +62,6 @@
   "transformer": {
     "base_url": "http://hub-services.lib.umn.edu/api/v1/transform",
     "api_key": "<<<<key here>>>>",
-    "@context": "http://dp.la/api/items/context",
-    "field_templates": [
-      {
-        "name": "OAI",
-        "url": "http://hub-client.lib.umn.edu/lookups/10.json"
-      }
-    ]
+    "@context": "http://dp.la/api/items/context"
   }
 }

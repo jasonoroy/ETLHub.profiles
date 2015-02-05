@@ -1,0 +1,42 @@
+{
+  "storage_destinations": {
+    "local_directory": {
+      "subdirs": [
+        "records",
+        "aath_ia_audio"
+      ],
+      "package_subdirs": [
+        "records",
+        "packaged"
+      ]
+    }
+  },
+  "validator": {
+    "base_url": "http://hub-services.lib.umn.edu/api/v1/validate",
+    "api_key": "<<<<key here>>>>",
+    "dpla_api_key": "<<<<key here>>>>"
+  },
+  "extractor": {
+    "records": {
+      "base_url": "http://hub-services.lib.umn.edu/api/v1/extract",
+      "endpoint_type": "simple_get",
+      "endpoint": "https://archive.org/advancedsearch.php?q=mediatype%3Aaudio&fl%5B%5D=avg_rating&fl%5B%5D=call_number&fl%5B%5D=collection&fl%5B%5D=contributor&fl%5B%5D=coverage&fl%5B%5D=creator&fl%5B%5D=date&fl%5B%5D=description&fl%5B%5D=downloads&fl%5B%5D=foldoutcount&fl%5B%5D=format&fl%5B%5D=headerImage&fl%5B%5D=identifier&fl%5B%5D=imagecount&fl%5B%5D=language&fl%5B%5D=licenseurl&fl%5B%5D=mediatype&fl%5B%5D=members&fl%5B%5D=month&fl%5B%5D=num_reviews&fl%5B%5D=oai_updatedate&fl%5B%5D=publicdate&fl%5B%5D=publisher&fl%5B%5D=rights&fl%5B%5D=scanningcentre&fl%5B%5D=source&fl%5B%5D=subject&fl%5B%5D=title&fl%5B%5D=type&fl%5B%5D=volume&fl%5B%5D=week&fl%5B%5D=year&sort%5B%5D=&sort%5B%5D=&sort%5B%5D=&rows=1000&page=1&output=json",
+      "api_key": "<<<<key here>>>>",
+      "batch_param_name": "page",
+      "origin_path": "response/docs",
+      "batch_size": 1
+    },
+    "enrichments": [
+      {
+        "endpoint": "http://hub-client.lib.umn.edu/lookups/1.json",
+        "cache": false,
+        "key": "aath_terms"
+      }
+    ]
+  },
+  "transformer": {
+    "base_url": "http://hub-services.lib.umn.edu/api/v1/transform",
+    "api_key": "<<<<key here>>>>",
+    "@context": "http://dp.la/api/items/context"
+  }
+}

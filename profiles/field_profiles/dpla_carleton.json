@@ -1,0 +1,110 @@
+{
+  "RECORD_FILTER_IGNORE": {
+    "origins": [
+      {
+        "path": "header/setSpec"
+      }
+    ],
+    "record_filters": [
+      {
+        "run": "before_processors",
+        "reject_if": "matches",
+        "args": {
+          "pattern": "ccn"
+        }
+      },
+      {
+        "run": "before_processors",
+        "reject_if": "matches",
+        "args": {
+          "pattern": "nth"
+        }
+      },
+      {
+        "run": "before_processors",
+        "reject_if": "matches",
+        "args": {
+          "pattern": "p16022coll13"
+        }
+      },
+      {
+        "run": "before_processors",
+        "reject_if": "matches",
+        "args": {
+          "pattern": "p16022coll10"
+        }
+      },
+      {
+        "run": "before_processors",
+        "reject_if": "matches",
+        "args": {
+          "pattern": "p16022coll15"
+        }
+      }
+    ]
+  },
+  "object": {
+    "origins": [
+      {
+        "path": "header/identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "/",
+          "replacement": "/id/"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "oai:contentdm.carleton.edu:",
+          "replacement": "utils/getthumbnail/collection/"
+        }
+      },
+      {
+        "process": "affix",
+        "args": {
+          "prefix": "http://contentdm.carleton.edu/"
+        }
+      }
+    ]
+  },
+  "sourceResource/collection/title": {
+    "path_keys": [
+      {
+        "token": "$setSpec",
+        "path": "header/setSpec"
+      }
+    ],
+    "origins": [
+      {
+        "path": "enrichments/listSets/records/$setSpec/setName"
+      }
+    ]
+  },
+  "sourceResource/collection/description": {
+    "path_keys": [
+      {
+        "token": "$setSpec",
+        "path": "header/setSpec"
+      }
+    ],
+    "origins": [
+      {
+        "path": "enrichments/listSets/records/$setSpec/setDescription/dc/description"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "Collection information undefined.",
+          "replacement": ""
+        }
+      }
+    ]
+  }
+}

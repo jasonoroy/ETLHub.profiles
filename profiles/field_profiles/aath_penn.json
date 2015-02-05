@@ -1,0 +1,64 @@
+{
+  "object": {
+    "origins": [
+      {
+        "path": "header/identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "/",
+          "replacement": "/id/"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "oai:collection1.libraries.psu.edu:",
+          "replacement": "utils/getthumbnail/collection/"
+        }
+      },
+      {
+        "process": "affix",
+        "args": {
+          "prefix": "http://collection1.libraries.psu.edu/"
+        }
+      }
+    ]
+  },
+  "dataProvider": {
+    "origins": [
+      {
+        "value": "Penn State University"
+      }
+    ]
+  },
+  "sourceResource/collection/title": {
+    "path_keys": [
+      {
+        "token": "$setSpec",
+        "path": "header/setSpec"
+      }
+    ],
+    "origins": [
+      {
+        "path": "enrichments/listSets/records/$setSpec/setDescription/oclcdc/title"
+      }
+    ]
+  },
+  "sourceResource/collection/description": {
+    "path_keys": [
+      {
+        "token": "$setSpec",
+        "path": "header/setSpec"
+      }
+    ],
+    "origins": [
+      {
+        "path": "enrichments/listSets/records/$setSpec/setDescription/oclcdc/description"
+      }
+    ]
+  }
+}

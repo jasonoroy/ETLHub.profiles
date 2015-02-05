@@ -1,0 +1,44 @@
+{
+  "object": {
+    "origins": [
+      {
+        "path": "header/identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "oai:indiamond6.ulib.iupui.edu:",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "/",
+          "replacement": "&CISOPTR="
+        }
+      },
+      {
+        "process": "affix",
+        "args": {
+          "prefix": "http://indiamond6.ulib.iupui.edu/cgi-bin/thumbnail.exe?CISOROOT=/"
+        }
+      }
+    ]
+  },
+  "sourceResource/collection/description": {
+    "path_keys": [
+      {
+        "token": "$setSpec",
+        "path": "header/setSpec"
+      }
+    ],
+    "origins": [
+      {
+        "path": "enrichments/listSets/records/$setSpec/setDescription/oclcdc/description"
+      }
+    ]
+  }
+}

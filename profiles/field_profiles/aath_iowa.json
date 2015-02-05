@@ -1,0 +1,50 @@
+{
+  "status": {
+    "origins": [
+      {
+        "path": "header/status"
+      }
+    ]
+  },
+  "sourceResource/language": {
+    "origins": [
+      {
+        "path": "metadata/dc/language"
+      }
+    ],
+    "processors": [
+      {
+        "process": "encode_language_by_name"
+      }
+    ]
+  },
+  "object": {
+    "origins": [
+      {
+        "path": "header/identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "oai:digital.lib.uiowa.edu:",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "/",
+          "replacement": "&CISOPTR="
+        }
+      },
+      {
+        "process": "affix",
+        "args": {
+          "prefix": "http://digital.lib.uiowa.edu:81/cgi-bin/thumbnail.exe?CISOROOT=/"
+        }
+      }
+    ]
+  }
+}

@@ -3,7 +3,7 @@
     "local_directory": {
       "subdirs": [
         "records",
-        "dpla_csbsju"
+        "aath_iupui"
       ],
       "package_subdirs": [
         "records",
@@ -20,19 +20,20 @@
     "records": {
       "base_url": "http://hub-services.lib.umn.edu/api/v1/extract",
       "endpoint_type": "simple_get",
+      "api_key": "<<<<key here>>>>",
       "origin_path": "OAI_PMH/ListRecords/record",
       "batch_param_name": "resumptionToken",
       "batch_param_path": "OAI_PMH/ListRecords/resumptionToken",
-      "api_key": "<<<<key here>>>>",
-      "endpoint": "http://cdm.csbsju.edu/oai/oai.php?verb=ListRecords&metadataPrefix=oai_dc",
-      "batch_endpoint": "http://cdm.csbsju.edu/oai/oai.php?verb=ListRecords"
+      "batch_endpoint": "http://indiamond6.ulib.iupui.edu/oai/oai.php?verb=ListRecords",
+      "endpoint": "http://indiamond6.ulib.iupui.edu/oai/oai.php?verb=ListRecords&metadataPrefix=oai_dc"
     },
     "enrichments": [
       {
-        "endpoint": "http://cdm.csbsju.edu/oai/oai.php?verb=ListSets",
+        "endpoint": "http://indiamond6.ulib.iupui.edu/oai/oai.php?verb=ListSets",
         "origin_path": "OAI_PMH/ListSets/set",
         "key": "listSets",
-        "pivot_on_path": "setSpec"
+        "pivot_on_path": "setSpec",
+        "cache": true
       },
       {
         "endpoint": "http://hub-client.lib.umn.edu/lookups/3.json",
@@ -67,14 +68,18 @@
     ]
   },
   "transformer": {
-    "base_url": "http://hub-services.lib.umn.edu/api/v1/transform",
+    "base_url": "http://services.libsystems.org",
     "api_key": "<<<<key here>>>>",
-    "@context": "http://dp.la/api/items/context",
     "field_templates": [
       {
         "name": "OAI",
         "url": "http://hub-client.lib.umn.edu/lookups/10.json"
+      },
+      {
+        "name": "AATH Record Filter",
+        "url": "http://hub-client.lib.umn.edu/lookups/11.json"
       }
-    ]
+    ],
+    "@context": "http://dp.la/api/items/context"
   }
 }

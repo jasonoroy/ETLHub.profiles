@@ -1,0 +1,50 @@
+{
+  "sourceResource/language": {
+    "origins": [
+      {
+        "path": "metadata/dc/language"
+      }
+    ],
+    "processors": [
+      {
+        "process": "encode_language_by_name"
+      }
+    ]
+  },
+  "object": {
+    "origins": [
+      {
+        "path": "header/identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "/",
+          "replacement": "/id/"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "oai:contentdm.unl.edu:",
+          "replacement": "utils/getthumbnail/collection/"
+        }
+      },
+      {
+        "process": "affix",
+        "args": {
+          "prefix": "http://contentdm.unl.edu/"
+        }
+      }
+    ]
+  },
+  "dataProvider": {
+    "origins": [
+      {
+        "value": "University of Nebraska–Lincoln Libraries "
+      }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "object": {
+    "origins": [
+      {
+        "path": "header/identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "oai:cdm16038.contentdm.oclc.org:",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "/",
+          "replacement": "&CISOPTR="
+        }
+      },
+      {
+        "process": "affix",
+        "args": {
+          "prefix": "http://cdm16038.contentdm.oclc.org/cgi-bin/thumbnail.exe?CISOROOT=/"
+        }
+      }
+    ]
+  }
+}

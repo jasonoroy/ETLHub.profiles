@@ -1,11 +1,34 @@
 {
+  "sourceResource/title": {
+    "origins": [
+      {
+        "path": "title"
+      }
+    ],
+    "processors": [
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "_",
+          "replacement": " "
+        }
+      },
+      {
+        "process": "strip"
+      }
+    ]
+  },
+  "dataProvider": {
+    "origins": [
+      {
+        "value": "Internet Archive"
+      }
+    ]
+  },
   "sourceResource/language": {
     "origins": [
       {
         "path": "title"
-      },
-      {
-        "path": "description"
       }
     ],
     "processors": [
@@ -36,28 +59,6 @@
     "origins": [
       {
         "path": "licenseurl"
-      }
-    ]
-  },
-  "object": {
-    "path_keys": [
-      {
-        "token": "$identifier",
-        "path": "identifier"
-      }
-    ],
-    "origins": [
-      {
-        "url": "https://archive.org/details/$identifier"
-      }
-    ],
-    "processors": [
-      {
-        "process": "attribute_value_at_path",
-        "args": {
-          "path": "//meta[@property='og:image']",
-          "attribute": "content"
-        }
       }
     ]
   },
@@ -94,7 +95,7 @@
       }
     ]
   },
-  "sourceResource/title": {
+  "matcher_filter_out_number_only_titles": {
     "origins": [
       {
         "path": "title"
@@ -102,21 +103,20 @@
     ],
     "processors": [
       {
-        "process": "strip"
-      },
-      {
         "process": "gsub",
         "args": {
-          "pattern": "\\s+\\s+",
-          "replacement": " "
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "\\;$",
+          "pattern": "[[:punct:]]|\\s|[0-9]",
           "replacement": ""
         }
+      },
+      {
+        "process": "strip"
+      }
+    ],
+    "record_filters": [
+      {
+        "run": "after_processors",
+        "reject_unless": "has_value?"
       }
     ]
   },
@@ -137,6 +137,15 @@
         "process": "flatten"
       },
       {
+        "process": "split",
+        "args": [
+          "--"
+        ]
+      },
+      {
+        "process": "flatten"
+      },
+      {
         "process": "unique"
       },
       {
@@ -144,6 +153,20 @@
       },
       {
         "process": "sort"
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "\"",
+          "replacement": ""
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "hip-hop|Hip-Hop",
+          "replacement": "Hip hop"
+        }
       },
       {
         "process": "apply_label",
@@ -418,7 +441,7 @@
         "process": "gsub",
         "args": {
           "pattern": "audio_foreign",
-          "replacement": "Non-English Audio"
+          "replacement": "Non\\-English Audio"
         }
       },
       {
@@ -440,6 +463,76 @@
         "args": {
           "pattern": "audio_religion",
           "replacement": "Spirituality & Religion"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "ourmedia",
+          "replacement": "Ourmedia"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "iuma-archive",
+          "replacement": "Internet Underground Music Archive"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "78rpm; Audio_music",
+          "replacement": "78 rpm"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "davidwnivenjazz",
+          "replacement": "David W. Niven Collection of Early Jazz Legends"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "freemusicarchive",
+          "replacement": "Free Music Archive"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "Audio_podcast",
+          "replacement": "Audio Podcast"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "jamendo-albums",
+          "replacement": "Jamendo Albums"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "cpr_productions; Radio Programs",
+          "replacement": "CapRadio Productions"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "KXJZinsight; Audio_news",
+          "replacement": " KXJZ's Insight"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "freespeechradionews; Audio_news",
+          "replacement": "Free Speech Radio News"
         }
       }
     ]

@@ -1,5 +1,16 @@
 {
-  "local_storage": true,
+  "storage_destinations": {
+    "local_directory": {
+      "subdirs": [
+        "records",
+        "dpla_mpr"
+      ],
+      "package_subdirs": [
+        "records",
+        "packaged"
+      ]
+    }
+  },
   "validator": {
     "base_url": "http://hub-services.lib.umn.edu/api/v1/validate",
     "api_key": "<<<<key here>>>>",
@@ -8,18 +19,16 @@
   "extractor": {
     "records": {
       "base_url": "http://hub-services.lib.umn.edu/api/v1/extract",
-      "endpoint_type": "s3",
-      "endpoint": "dpla.umn.mhs.endpoint",
+      "endpoint_type": "simple_get",
+      "endpoint": "http://www.mnmediasource.org/dezi/mpr/search?q=guid!=null&h=0&s=publish_date%20desc&f=0&p=1000",
       "api_key": "<<<<key here>>>>",
-      "origin_path": "searchRetrieveResponse/record",
-      "aws_access_key_id": "<<<<key here>>>>",
-      "aws_access_secret_key": "<<<<key here>>>>"
+      "batch_param_name": "o",
+      "origin_path": "results"
     }
   },
   "transformer": {
     "base_url": "http://hub-services.lib.umn.edu/api/v1/transform",
     "api_key": "<<<<key here>>>>",
     "@context": "http://dp.la/api/items/context"
-    }
   }
 }

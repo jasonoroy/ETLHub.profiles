@@ -2,17 +2,21 @@
   "dataProvider": {
     "origins": [
       {
-        "path": "organization"
+        "value": "Minnesota Historical Society"
       }
     ]
   },
   "title": {
     "origins": [
       {
-        "path": "title"
+        "path": "titles/title"
       }
     ],
     "processors": [
+      {
+        "process": "join",
+        "args": ";"
+      },
       {
         "process": "strip"
       }
@@ -21,10 +25,14 @@
   "sourceResource/title": {
     "origins": [
       {
-        "path": "title"
+        "path": "titles/title"
       }
     ],
     "processors": [
+      {
+        "process": "join",
+        "args": ";"
+      },
       {
         "process": "strip"
       }
@@ -40,36 +48,69 @@
   "object": {
     "origins": [
       {
-        "path": "image"
+        "path": "image_link"
       }
     ]
   },
   "identifier": {
     "origins": [
       {
-        "path": "identifier_display"
+        "path": "image_link"
       }
     ]
   },
   "sourceResource/type": {
     "origins": [
       {
-        "path": "type"
+        "path": "type_displays/type_display"
       }
     ],
     "processors": [
       {
+        "process": "flatten"
+      },
+      {
+        "process": "unique"
+      },
+      {
+        "process": "sort"
+      },
+      {
+        "process": "downcase"
+      },
+      {
+        "process": "join",
+        "args": " "
+      },
+      {
         "process": "gsub",
         "args": {
-          "pattern": "Photographs",
-          "replacement": "image"
+          "pattern": "[[:punct:]]",
+          "replacement": ""
         }
       },
       {
         "process": "gsub",
         "args": {
-          "pattern": "Text",
-          "replacement": "text"
+          "enrichment": "dc_text_type_replacements"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "enrichment": "dc_image_type_replacements"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "enrichment": "dc_sound_type_replacements"
+        }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "enrichment": "dc_video_type_replacements"
         }
       }
     ]
@@ -77,7 +118,7 @@
   "sourceResource/format": {
     "origins": [
       {
-        "path": "type"
+        "path": "type_displays/type_display"
       }
     ]
   },
@@ -91,10 +132,7 @@
   "provider": {
     "origins": [
       {
-        "value": {
-          "@id": "http://dp.la/api/contributor/mhs",
-          "name": "Minnesota Historical Society"
-        }
+        "value": "Minnesota Digital Library"
       }
     ]
   },
@@ -105,17 +143,17 @@
       }
     ]
   },
-  "sourceResource/creator": {
+  "sourceResource/creator/": {
     "origins": [
       {
-        "path": "name_display"
+        "path": "name_displays/name_display"
       }
     ]
   },
   "sourceResource/date/displayDate": {
     "origins": [
       {
-        "path": "event_date[first()]"
+        "path": "event_display_dates/event_display_date[last()]"
       }
     ],
     "processors": [
@@ -125,13 +163,20 @@
           "pattern": "T00:00:00Z",
           "replacement": ""
         }
+      },
+      {
+        "process": "gsub",
+        "args": {
+          "pattern": "Content: ",
+          "replacement": ""
+        }
       }
     ]
   },
   "sourceResource/date/begin": {
     "origins": [
       {
-        "path": "event_date[first()]"
+        "path": "event_dates/event_date[first()]"
       }
     ],
     "processors": [
@@ -149,7 +194,7 @@
   "sourceResource/date/end": {
     "origins": [
       {
-        "path": "event_date[last()]"
+        "path": "event_dates/event_date[last()]"
       }
     ],
     "processors": [
@@ -167,98 +212,33 @@
   "sourceResource/description": {
     "origins": [
       {
-        "path": "description"
-      }
-    ],
-    "processors": [
-      {
-        "process": "strip"
-      }
-    ]
-  },
-  "sourceResource/physicalMedium": {
-    "origins": [
-      {
-        "path": "type_display"
+        "path": "fulltexts/fulltext[first()]"
       }
     ]
   },
   "sourceResource/spatial": {
     "origins": [
       {
-        "path": "spatial"
+        "path": "spatial_displays/spatial_display"
       }
     ],
     "processors": [
       {
+        "process": "gsub",
+        "args": {
+          "pattern": "unknown",
+          "replacement": ""
+        }
+      },
+      {
         "process": "geonames_postal",
         "args": {
-          "username": "umntestuser",
-          "defaults": [
-            {
-              "matches": [
-                [
-                  "Minneapolis",
-                  "Downtown",
-                  "Hennepin",
-                  "Minnesota",
-                  "United States"
-                ],
-                [
-                  "Minneapolis",
-                  "Hennepin",
-                  "Minnesota",
-                  "United States"
-                ],
-                [
-                  "Minneapolis",
-                  "Minnesota",
-                  "United States"
-                ],
-                [
-                  "Minneapolis",
-                  "Minnesota"
-                ],
-                [
-                  "Minneapolis"
-                ]
-              ],
-              "returns": {
-                "county": "Hennepin County",
-                "name": "Minneapolis",
-                "state": "Minnesota",
-                "coordinates": [
-                  "44.9871, -93.2737"
-                ],
-                "country": "United States"
-              }
-            },
-            {
-              "matches": [
-                [
-                  "Alexandria",
-                  "Douglas",
-                  "Minnesota",
-                  "United States",
-                  "Mary Lake"
-                ]
-              ],
-              "returns": {
-                "county": "Douglas",
-                "name": "Mary Lake, Alexandria",
-                "state": "Minnesota",
-                "coordinates": [
-                  "45.827483,-95.473436"
-                ],
-                "country": "United States"
-              }
-            }
-          ]
+          "enrichment": "geonames_minnesota_defaults"
         }
       }
     ]
   },
-  "sourceResource/stateLocatedIn/iso3166‑2": {
+  "sourceResource/stateLocatedIn/iso3166-2": {
     "origins": [
       {
         "value": "US-MN"
@@ -268,7 +248,7 @@
   "sourceResource/subject": {
     "origins": [
       {
-        "path": "subject"
+        "path": "subject_displays/subject_display"
       }
     ],
     "processors": [
@@ -310,10 +290,7 @@
   "record_hash": {
     "origins": [
       {
-        "path": "id"
-      },
-      {
-        "path": "organization"
+        "path": "image_link"
       }
     ],
     "processors": [
@@ -324,7 +301,7 @@
         ]
       },
       {
-        "process": "to_md5"
+        "process": "to_sha1_hex"
       }
     ]
   }
