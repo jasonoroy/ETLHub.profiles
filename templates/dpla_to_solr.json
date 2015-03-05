@@ -1,0 +1,801 @@
+        {
+  "HUBINDEX/status_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "status"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/title_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/title"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/intermediateProvider_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "intermediateProvider"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/title_ssort": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/title"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/language_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/language/name"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/subject_ssim": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/subject"
+      }
+    ],
+    "processors": [
+      {
+        "process": "slice_each",
+        "args": [
+          "name"
+        ]
+      },
+      {
+        "process": "rstrip"
+      }
+    ]
+  },
+  "HUBINDEX/creator_ssim": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/creator"
+      }
+    ]
+  },
+  "HUBINDEX/creator_display_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/creator"
+      }
+    ],
+    "processors": [
+      {
+        "process": "to_s"
+      }
+    ]
+  },
+  "HUBINDEX/creator_ssort": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/creator"
+      }
+    ],
+    "processors": [
+      {
+        "process": "to_s"
+      }
+    ]
+  },
+  "HUBINDEX/object_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "object"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/dataProvider_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "dataProvider"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/isShownAt_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "isShownAt"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/provider_id_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "provider/id"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/provider_name_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "provider/name"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_collection_title_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/collection/title"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_collection_description_tesi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/collection/description"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_collection_id_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/collection/@id"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_contributor_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/contributor"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_creator_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/creator"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_date_begin_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/date/begin"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_date_displaydate_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/date/displayDate"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_description_tesi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/description"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_extent_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/extent"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_format_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/format"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_identifier_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/identifier"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_language_name_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/language/name"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_language_iso639_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/language/iso639"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_publisher_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/publisher"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_rights_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/rights"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          ""
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_location_facet_ssim": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/spatial[0]/city"
+      },
+      {
+        "path": "sourceResource/spatial[0]/county"
+      },
+      {
+        "path": "sourceResource/spatial[0]/state"
+      },
+      {
+        "path": "sourceResource/spatial[0]/region"
+      },
+      {
+        "path": "sourceResource/spatial[0]/name"
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_spatial_coordinates_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/spatial[first()]/coordinates"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_spatial_city_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/spatial[0]/city"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_spatial_county_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/spatial[0]/county"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_spatial_name_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/spatial[0]/name"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_spatial_region_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/spatial[0]/region"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_spatial_state_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/spatial[0]/state"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_physicalMedium_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/physicalMedium"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  },
+  "HUBINDEX/sourceResource_type_ssi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "sourceResource/type"
+      }
+    ],
+    "processors": [
+      {
+        "process": "strip"
+      },
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          " "
+        ]
+      }
+    ]
+  }
+}
