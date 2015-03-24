@@ -145,20 +145,10 @@
     ],
     "processors": [
       {
-        "process": "to_s"
-      }
-    ]
-  },
-  "HUBINDEX/creator_ssort": {
-    "use_dest_record": true,
-    "origins": [
-      {
-        "path": "sourceResource/creator"
-      }
-    ],
-    "processors": [
-      {
-        "process": "to_s"
+        "process": "join",
+        "args": [
+          "; "
+        ]
       }
     ]
   },
@@ -795,6 +785,14 @@
         "args": [
           " "
         ]
+      }
+    ]
+  },
+  "HUBINDEX/might_be_spam_bsi": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "might_be_spam"
       }
     ]
   }
