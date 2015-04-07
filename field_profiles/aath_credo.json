@@ -9,6 +9,27 @@
       {
         "process": "affix",
         "args": {
+          "prefix": "http://credo.library.umass.edu/images/resize/175x200/"
+        }
+      },
+      {
+        "process": "affix",
+        "args": {
+          "suffix": "-001.png"
+        }
+      }
+    ]
+  },
+  "originalObject": {
+    "origins": [
+      {
+        "path": "itemID"
+      }
+    ],
+    "processors": [
+      {
+        "process": "affix",
+        "args": {
           "prefix": "http://credo.library.umass.edu/images/resize/display/"
         }
       },
@@ -71,6 +92,16 @@
     "processors": [
       {
         "process": "hash_from_mods_xml"
+      }
+    ],
+    "record_filters": [
+      {
+        "run": "after_processors",
+        "reject_if": "key_equals",
+        "args": {
+          "key": "error",
+          "value": "__INVALID XML__"
+        }
       }
     ]
   },
@@ -135,7 +166,7 @@
   "sourceResource/title": {
     "origins": [
       {
-        "path": "FacetCollection"
+        "path": "title"
       }
     ],
     "processors": [
@@ -459,15 +490,49 @@
         "args": [
           "  "
         ]
+      },
+      {
+        "process": "downcase"
+      },
+      {
+        "process": "match_first",
+        "args": {
+          "enrichment": "aath_terms"
+        }
       }
     ],
     "record_filters": [
       {
         "run": "after_processors",
-        "reject_unless": "matches",
-        "args": {
-          "enrichment": "aath_terms"
-        }
+        "reject_unless": "has_value?"
+      }
+    ]
+  },
+  "matcherOriginal": {
+    "use_dest_record": true,
+    "origins": [
+      {
+        "path": "record/subject"
+      },
+      {
+        "path": "sourceResource/title"
+      },
+      {
+        "path": "record/abstract"
+      }
+    ],
+    "processors": [
+      {
+        "process": "flatten"
+      },
+      {
+        "process": "join",
+        "args": [
+          "  "
+        ]
+      },
+      {
+        "process": "downcase"
       }
     ]
   }
