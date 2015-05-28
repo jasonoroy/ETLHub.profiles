@@ -99,6 +99,12 @@
     ],
     "processors": [
       {
+        "process": "join",
+        "args": [
+          ";  "
+        ]
+      },
+      {
         "process": "strip_html"
       },
       {
@@ -117,6 +123,12 @@
           "pattern": "\\;$",
           "replacement": ""
         }
+      }
+    ],
+    "record_filters": [
+      {
+        "run": "after_processors",
+        "reject_unless": "has_value?"
       }
     ]
   },
@@ -227,108 +239,6 @@
       {
         "process": "apply_label",
         "args": "name"
-      }
-    ]
-  },
-  "sourceResource/date/begin": {
-    "origins": [
-      {
-        "path": "metadata/dc/date[first()]||metadata/dc/date"
-      }
-    ],
-    "processors": [
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "\\?",
-          "replacement": ""
-        }
-      },
-      {
-        "process": "split",
-        "args": [
-          " - "
-        ]
-      },
-      {
-        "process": "first"
-      },
-      {
-        "process": "split",
-        "args": [
-          "-"
-        ]
-      },
-      {
-        "process": "first"
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "[A-Za-z]",
-          "replacement": ""
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "[[:punct:]]",
-          "replacement": ""
-        }
-      },
-      {
-        "process": "strip"
-      }
-    ]
-  },
-  "sourceResource/date/end": {
-    "origins": [
-      {
-        "path": "metadata/dc/date[last()]||metadata/dc/date"
-      }
-    ],
-    "processors": [
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "\\?",
-          "replacement": ""
-        }
-      },
-      {
-        "process": "split",
-        "args": [
-          " - "
-        ]
-      },
-      {
-        "process": "last"
-      },
-      {
-        "process": "split",
-        "args": [
-          "-"
-        ]
-      },
-      {
-        "process": "last"
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "[A-Za-z]",
-          "replacement": ""
-        }
-      },
-      {
-        "process": "gsub",
-        "args": {
-          "pattern": "[[:punct:]]",
-          "replacement": ""
-        }
-      },
-      {
-        "process": "strip"
       }
     ]
   },
