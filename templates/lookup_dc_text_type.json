@@ -1,0 +1,4 @@
+{
+  "pattern": ".*brochures .*|.*yearbooks.*|.*microfilms.*|.*broadsides.*|.*clippings.*|.*xml.*|.*manuscript\\s.*|.*text\\s|text|imagetext|image book jackets|newspaper|altered book|archival materials|archival materials letters correspondence|archival materials printed books|book|book illustrations|book illustrations book pages|book illustrations prints|book pages|book pages book illustrations|broadside|chapbook|instructional materials|letters correspondence|Magic Scroll|music notated|newsletter|notated music|popup book|printed books|printed books artifacts|printed books book illustrations|printed books book illustrations maps|printed books book illustrations prints|printed books book pages|printed books prints|printed books prints book illustrations|prints book illustrations|prints printed books|reference works|reference works printed books|scroll|serial|broadside",
+  "replacement": "text"
+}
