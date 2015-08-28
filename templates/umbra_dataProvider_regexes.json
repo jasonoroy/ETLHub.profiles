@@ -1,0 +1,238 @@
+[
+  {
+    "pattern": "Allen University.*",
+    "replacement": "Allen University Press"
+  },
+  {
+    "pattern": "Auburn Avenue.*",
+    "replacement": "Auburn Avenue Research Library on African American History and Culture"
+  },
+  {
+    "pattern": "Austin History Center.*",
+    "replacement": "Austin History Center"
+  },
+  {
+    "pattern": "Annie Belle Weaver.*",
+    "replacement": "University of West Georgia"
+  },
+  {
+    "pattern": "Arizona State University.*",
+    "replacement": "Arizona State University.*"
+  },
+  {
+    "pattern": "Armstrong.*",
+    "replacement": "Armstrong State University Libraries"
+  },
+  {
+    "pattern": "Auburn University.*",
+    "replacement": "Auburn University"
+  },
+  {
+    "pattern": "Belle W\\..*",
+    "replacement": "Belle W. Baruch Foundation"
+  },
+  {
+    "pattern": "Boston College.*",
+    "replacement": "Boston College"
+  },
+  {
+    "pattern": "Boston Publ.*",
+    "replacement": "Boston Public Library"
+  },
+  {
+    "pattern": "Brigham.*",
+    "replacement": "Brigham Young University"
+  },
+  {
+    "pattern": "Carl Vinson.*",
+    "replacement": "University of Georgia"
+  },
+  {
+    "pattern": "Clark Atlanta.*",
+    "replacement": "Clark Atlanta University"
+  },
+  {
+    "pattern": "Columbia University.*",
+    "replacement": "Columbia University"
+  },
+  {
+    "pattern": "Cornell.*",
+    "replacement": "Cornell University"
+  },
+  {
+    "pattern": "Duke U.*",
+    "replacement": "Duke University"
+  },
+  {
+    "pattern": "Emory U.*",
+    "replacement": "Emory Univeristy"
+  },
+  {
+    "pattern": "Florida Int.*",
+    "replacement": "Florida International Unviersity"
+  },
+  {
+    "pattern": "Fort V.*",
+    "replacement": "Fort Valley State University"
+  },
+  {
+    "pattern": "Georgetown Count.*",
+    "replacement": "Georgetown County Museum"
+  },
+  {
+    "pattern": "Georgia Af.*",
+    "replacement": "Georgia African American Historic Preservation Network"
+  },
+  {
+    "pattern": "Georgia\\. Dept\\. of Archives.*",
+    "replacement": "Georgia Department of Archives and History"
+  },
+  {
+    "pattern": "Georgia Hu.*",
+    "replacement": "Georgia Humanities Council"
+  },
+  {
+    "pattern": "Georgia Inst.*",
+    "replacement": "Georgia Institute of Technology"
+  },
+  {
+    "pattern": "HASH.*",
+    "replacement": "Georgia Southern University"
+  },
+  {
+    "pattern": "Georgia State U.*",
+    "replacement": "Georgia State University"
+  },
+  {
+    "pattern": "Hall County.*",
+    "replacement": "Hall County Library System"
+  },
+  {
+    "pattern": "Harper's W.*",
+    "replacement": "Harper's Weekly"
+  },
+  {
+    "pattern": "Harvard.*",
+    "replacement": "Harvard University"
+  },
+  {
+    "pattern": "Howard-T.*",
+    "replacement": "Tulane University"
+  },
+  {
+    "pattern": "Jan.*",
+    "replacement": "Jan K. Herman United States Naval Institute"
+  },
+  {
+    "pattern": "John Davis.*",
+    "replacement": "University of Mississippi"
+  },
+  {
+    "pattern": "Library of C.*",
+    "replacement": "Library of Congress"
+  },
+  {
+    "pattern": "Lyndon.*",
+    "replacement": "Lyndon Baines Johnson Library"
+  },
+  {
+    "pattern": "Mississippi\\. De.*",
+    "replacement": "Mississippi Department of Archives and History"
+  },
+  {
+    "pattern": "Montana St.*",
+    "replacement": "Montana State Library"
+  },
+  {
+    "pattern": "Mugar.*",
+    "replacement": "Boston University"
+  },
+  {
+    "pattern": ".*NMMH.*|.*National Air.*|.*National M.*|.*Smithsonian.*|.*Anacostia.*|.*Archives of American Art.*|.*Freer Gallery.*|.*National Portrait.*",
+    "replacement": "Smithsonian Institution"
+  },
+  {
+    "pattern": "National Arch.*",
+    "replacement": "National Archives and Records Administration"
+  },
+  {
+    "pattern": "New Georgia.*",
+    "replacement": "New Georgia Encyclopedia"
+  },
+  {
+    "pattern": ".*New York Pub.*|.*Schomb.*",
+    "replacement": "New York Public Library"
+  },
+  {
+    "pattern": "Odum L.*",
+    "replacement": "Valdosta State University"
+  },
+  {
+    "pattern": "Peabody Inst.*",
+    "replacement": "Peabody Institute"
+  },
+  {
+    "pattern": "Pendleton.*",
+    "replacement": "Pendleton District Commission"
+  },
+  {
+    "pattern": "Prairie Light.*|.*University of Iowa.*|.*Iowa Women.*",
+    "replacement": "University of Iowa"
+  },
+  {
+    "pattern": "Queens C.*",
+    "replacement": "Queens College, City University of New York"
+  },
+  {
+    "pattern": "State Historical Society of Iowa.*",
+    "replacement": "State Historical Society of Iowa"
+  },
+  {
+    "pattern": "Tennessee State Library and Archive.*",
+    "replacement": "Tennesse State Library and Archives"
+  },
+  {
+    "pattern": "Charleston Museum.*",
+    "replacement": "The Charleston Museum"
+  },
+  {
+    "pattern": "University of Tennessee.*",
+    "replacement": "University of Tennessee, Knoxville"
+  },
+  {
+    "pattern": "University of Toronto.*",
+    "replacement": "University of Toronto"
+  },
+  {
+    "pattern": "UNT.*",
+    "replacement": "University of North Texas"
+  },
+  {
+    "pattern": "Massachusetts Dartmouth",
+    "replacement": "University of Massachusetts, Dartmouth"
+  },
+  {
+    "pattern": ".*UMass.*|.*Massachusetts Amherst.*",
+    "replacement": "University of Massachusetts, Amherst"
+  },
+  {
+    "pattern": "Minnesota Extension",
+    "replacement": "University of Minnesota"
+  },
+  {
+    "pattern": "Wisconsin-Milwaukee.*",
+    "replacement": "University of Wisconsin--Milwaukee"
+  },
+  {
+    "pattern": ".*Beinecke.*|.*Yale.*",
+    "replacement": "Yale University"
+  },
+  {
+    "pattern": "Tubman African-Am.*",
+    "replacement": "Tubman African American Musuem"
+  },
+  {
+    "pattern": "Iowa City Publ.*",
+    "replacement": "Iowa City Public Library"
+  }
+]
